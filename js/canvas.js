@@ -1,11 +1,6 @@
 (function() { //来自网络
     var canvas = document.querySelector('canvas'),
         header = document.querySelector('.page-header');
-
-    function setWidthHeight() {
-        canvas.width = parseFloat(window.getComputedStyle(header, null).width);
-        canvas.height = parseFloat(window.getComputedStyle(header, null).height);
-    }
     ctx = canvas.getContext('2d');
     ctx.lineWidth = .3;
     ctx.strokeStyle = (new Color(150)).style;
@@ -16,11 +11,25 @@
     };
 
     var dots = { //dots集合
-        nb: 300, //数量
-        distance: 50,
-        d_radius: 30,
+        nb: null, //数量
+        distance: null,
+        d_radius: null,
         array: []
     };
+
+    function setWidthHeight() { //dot的数量随窗口变化而变化
+        canvas.width = parseFloat(window.getComputedStyle(header, null).width);
+        canvas.height = parseFloat(window.getComputedStyle(header, null).height);
+        dots.nb = Math.min(300, Math.max(50, parseInt(200 * canvas.width / 1000)));
+        // 重点在于改变要显示的dots数量之后，如果
+        // createDots没有创建那么多，就会有空引用，所以，初始化时就创建300个dots,在
+        // 绘制时根据resize取出50——300个进行绘制，这样不会出现dot.y没有定义的错误
+        dots.distance = Math.max(30, parseInt(40 * canvas.width / 1000));
+        dots.d_radius = Math.max(10, parseInt(30 * canvas.width / 1000));
+        //console.log(dots);
+
+    }
+
 
     function colorValue(min) {
         return Math.floor(Math.random() * 255 + min);
@@ -75,7 +84,7 @@
 
     function createDots() { //dots数组
         setWidthHeight();
-        for (i = 0; i < dots.nb; i++) {
+        for (i = 0; i < 300; i++) {
             dots.array.push(new Dot());
         }
     }
@@ -126,12 +135,15 @@
 
     function animateDots() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+
         moveDots();
         connectDots();
         drawDots();
 
         requestAnimationFrame(animateDots);
     }
+    createDots();
+
     canvas.addEventListener('mousemove', function(e) {
         mousePosition.x = e.pageX;
         mousePosition.y = e.pageY;
@@ -142,7 +154,5 @@
         mousePosition.y = canvas.height / 2;
     });
     window.addEventListener('resize', setWidthHeight);
-
-    createDots();
     requestAnimationFrame(animateDots);
 })();
