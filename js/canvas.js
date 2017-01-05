@@ -6,8 +6,8 @@
     ctx.strokeStyle = (new Color(150)).style;
 
     var mousePosition = {
-        x: 30 * canvas.width / 100,
-        y: 30 * canvas.height / 100
+        x: 50 * canvas.width / 100,
+        y: 50 * canvas.height / 100
     };
 
     var dots = { //dots集合
@@ -24,7 +24,7 @@
         // 重点在于改变要显示的dots数量之后，如果
         // createDots没有创建那么多，就会有空引用，所以，初始化时就创建300个dots,在
         // 绘制时根据resize取出50——300个进行绘制，这样不会出现dot.y没有定义的错误
-        dots.distance = Math.max(30, parseInt(40 * canvas.width / 1000));
+        dots.distance = Math.max(30, parseInt(50 * canvas.width / 1000));
         dots.d_radius = Math.max(10, parseInt(30 * canvas.width / 1000));
         //console.log(dots);
 
@@ -36,7 +36,7 @@
     }
 
     function createColorStyle(r, g, b) {
-        return 'rgba(' + r + ',' + g + ',' + b + ', 0.8)';
+        return 'rgb(' + r + ',' + g + ',' + b + ')';
     }
 
     function mixComponents(comp1, weight1, comp2, weight2) {
@@ -135,7 +135,9 @@
 
     function animateDots() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+        ctx.fillStyle = 'rgb(51,51,51)';
+        ctx.rect(0, 0, canvas.width, canvas.height); //画点
+        ctx.fill();
         moveDots();
         connectDots();
         drawDots();
@@ -144,12 +146,12 @@
     }
     createDots();
 
-    canvas.addEventListener('mousemove', function(e) {
+    header.addEventListener('mousemove', function(e) {
         mousePosition.x = e.pageX;
         mousePosition.y = e.pageY;
     });
 
-    canvas.addEventListener('mouseleave', function(e) {
+    header.addEventListener('mouseleave', function(e) {
         mousePosition.x = canvas.width / 2;
         mousePosition.y = canvas.height / 2;
     });

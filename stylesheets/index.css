@@ -5,13 +5,19 @@ body {
     padding: 0;
 }
 
+
+/*#wrapper {
+    position: absolute;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+}*/
+
 .page-header canvas {
-    display: block;
-    /*width: 100%;
-    height: 100%;*/
     top: 0;
     left: 0;
     position: absolute;
+    z-index: -1;
 }
 
 ul {
@@ -48,11 +54,11 @@ a {
 
 .page-header {
     padding: 24px 32px;
-    background-color: rgb(51, 51, 51) !important;
+    background-color: transparent !important;
     background-image: none;
 }
 
-.page-header:not(canvas) {
+.page-header div {
     z-index: 10;
 }
 
