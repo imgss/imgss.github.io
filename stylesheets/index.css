@@ -3,6 +3,7 @@ body {
     font-family: sans-serif;
     margin: 0;
     padding: 0;
+    font-size: 14px;
 }
 
 
@@ -20,19 +21,20 @@ body {
     z-index: -1;
 }
 
-ul {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin: 0;
-    padding: 0;
+div {
+    font-size: 1.2em !important;
 }
 
-li {
-    list-style: none;
-    font-size: 1.2rem !important;
-    display: flex;
-    flex-direction: column;
+.row a {
+    line-height: 30px;
+    text-align: center;
+    display: block;
+}
+
+.row img {
+    width: 20px !important;
+    height: 20px !important;
+    vertical-align: text-bottom;
 }
 
 
@@ -40,20 +42,24 @@ li {
     border-bottom: solid 2px rgb(60, 80, 252);
 }*/
 
-li span {
+div span {
     font-size: small;
     margin-top: 16px;
     display: block;
     opacity: 0;
 }
 
-a {
+div a {
     text-decoration: none !important;
     color: #ed6a43;
+    vertical-align: middle;
 }
 
 .page-header {
     padding: 24px 32px;
+    margin: 0;
+    margin-bottom: 3rem;
+    box-sizing: border-box;
     background-color: transparent !important;
     background-image: none;
 }

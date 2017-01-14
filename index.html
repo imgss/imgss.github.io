@@ -6,12 +6,14 @@
     <title>Imgss 的小屋</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/index.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/animate.css">
+
 
 </head>
 
@@ -28,17 +30,23 @@
 
     </section>
 
-    <section class="main-content site-content">
-        <ul>
-            <li>
-                <a href="http://www.cnblogs.com/imgss/" target='_blank'>我的文章</a><span>在博客园的随笔</span>
-            </li>
-            <li>
-                <a href="http://jsrun.net/user/confused/" target='_blank'>我的demo</a><span>在jsrun的一些小玩意</span></li>
-            <li>
-                <a href="https://github.com/imgss/ToDoList#todolist" target="_blank">ToDoList</a><span>用vue2.0写的一个小应用</span>
-            </li>
-        </ul>
+    <section>
+        <div class="container">
+            <div class='row'>
+                <div class='col-md-3 col-xs-6'>
+                    <a href="http://www.cnblogs.com/imgss/" target='_blank'><img src='imgs/blog.ico'>我的文章</a><span>在博客园的随笔</span>
+                </div>
+                <div class='col-md-3 col-xs-6'>
+                    <a href="http://jsrun.net/user/confused/" target='_blank'> <img src='imgs/jsrun.jpg'>我的demo</a><span>在jsrun的一些小玩意</span>
+                </div>
+                <div class='col-md-3 col-xs-6'>
+                    <a href="https://github.com/imgss/ToDoList#todolist" target="_blank"><img src='imgs/vue.png'>ToDoList</a><span>用vue2.0写的一个小应用</span>
+                </div>
+                <div class='col-md-3 col-xs-6'>
+                    <a href="https://github.com/imgss/greenDot#greendot" target="_blank"><img src='imgs/node.png'>GreenDot</a><span>node.js小应用</span>
+                </div>
+            </div>
+        </div>
     </section>
     <footer class="site-footer">
         <span class="site-footer-credits">
