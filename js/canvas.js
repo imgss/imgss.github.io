@@ -2,7 +2,7 @@
     var tScale = window.devicePixelRatio,
         canvas = document.querySelector('canvas'),
         header = document.querySelector('.page-header'),
-        dotMaxRad = 5,
+        dotMaxRad = 5 * tScale,
         maxCount = 100;
     ctx = canvas.getContext('2d');
     ctx.lineWidth = .2;
@@ -33,7 +33,7 @@
         // 重点在于改变要显示的dots数量之后，如果
         // createDots没有创建那么多，就会有空引用，所以，初始化时就创建300个dots,在
         // 绘制时根据resize取出50——300个进行绘制，这样不会出现dot.y没有定义的错误
-        dots.distance = Math.max(30, parseInt(50 * canvas.width / 1000));
+        dots.distance = Math.max(30, parseInt(50 * canvas.width / 1000)) * tScale;
         dots.d_radius = Math.max(10, parseInt(30 * canvas.width / 1000));
         //console.log(dots);
 
