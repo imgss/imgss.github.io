@@ -1,5 +1,6 @@
 (function() { //来自网络
-    var canvas = document.querySelector('canvas'),
+    var tScale = window.devicePixelRatio,
+        canvas = document.querySelector('canvas'),
         header = document.querySelector('.page-header'),
         dotMaxRad = 5,
         maxCount = 100;
@@ -20,8 +21,14 @@
     };
 
     function setWidthHeight() { //dot的数量随窗口变化而变化
-        canvas.width = parseFloat(window.getComputedStyle(header, null).width);
-        canvas.height = parseFloat(window.getComputedStyle(header, null).height);
+
+        var parentWidth = parseFloat(window.getComputedStyle(header, null).width);
+        var parentHeight = parseFloat(window.getComputedStyle(header, null).height);
+
+        canvas.style.width = parentWidth + "px";
+        canvas.style.height = parentHeight + "px";
+        canvas.width = parentWidth * tScale;
+        canvas.height = parentHeight * tScale;
         dots.nb = Math.min(maxCount, Math.max(50, parseInt(200 * canvas.width / 1000)));
         // 重点在于改变要显示的dots数量之后，如果
         // createDots没有创建那么多，就会有空引用，所以，初始化时就创建300个dots,在
@@ -134,7 +141,7 @@
             for (j = 0; j < dots.nb; j++) {
                 i_dot = dots.array[i];
                 j_dot = dots.array[j];
-                if (i_dot.connectNum < 3 && j_dot.connectNum < 3 && distance(i_dot, j_dot) < 60) {
+                if (i_dot.connectNum < 3 && j_dot.connectNum < 3 && distance(i_dot, j_dot) < dots.distance) {
                     ctx.beginPath();
                     ctx.strokeStyle = averageColorStyles(i_dot, j_dot);
                     ctx.lineWidth = .2;
