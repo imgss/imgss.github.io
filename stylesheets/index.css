@@ -6,14 +6,6 @@ body {
     font-size: 14px;
 }
 
-
-/*#wrapper {
-    position: absolute;
-    z-index: -1;
-    width: 100vw;
-    height: 100vh;
-}*/
-
 .page-header canvas {
     top: 0;
     left: 0;
@@ -69,11 +61,30 @@ div a {
     z-index: 10;
 }
 
+@media screen and (max-width: 400px) {
+    footer {
+        position: absolute;
+        bottom: 10px;
+    }
+}
+
+@media screen and (min-width: 400px) and (max-width: 800px) {
+    footer {
+        position: static;
+    }
+}
+
+@media screen and (min-width: 801px) {
+    footer {
+        position: absolute;
+        bottom: 10px;
+    }
+}
+
 footer {
     width: 100%;
-    position: fixed;
+    vertical-align: middle;
     font-size: large;
-    bottom: 10px;
     display: flex;
     justify-content: space-around;
 }
