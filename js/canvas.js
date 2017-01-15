@@ -7,7 +7,6 @@
     ctx = canvas.getContext('2d');
     ctx.lineWidth = .2;
     ctx.strokeStyle = (new Color(150)).style;
-
     var mousePosition = {
         x: 50 * canvas.width / 100,
         y: 50 * canvas.height / 100
@@ -29,7 +28,7 @@
         canvas.style.height = parentHeight + "px";
         canvas.width = parentWidth * tScale;
         canvas.height = parentHeight * tScale;
-        dots.nb = Math.min(maxCount, Math.max(50, parseInt(200 * canvas.width / 1000)));
+        dots.nb = Math.min(maxCount, parseInt(100 * parentWidth / 1000));
         // 重点在于改变要显示的dots数量之后，如果
         // createDots没有创建那么多，就会有空引用，所以，初始化时就创建300个dots,在
         // 绘制时根据resize取出50——300个进行绘制，这样不会出现dot.y没有定义的错误
@@ -74,8 +73,8 @@
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
 
-        this.vx = -.3 + 0.6 * Math.random(); //dot的x速度
-        this.vy = -.3 + 0.6 * Math.random(); //dot的y速度
+        this.vx = (-.3 + 0.6 * Math.random()) * tScale; //dot的x速度,手机端要乘以tScale
+        this.vy = -.3 + 0.6 * Math.random() * tScale; //dot的y速度
 
         this.radius = Math.random() * dotMaxRad;
 
@@ -116,7 +115,7 @@
         }
     }
 
-    function connectDots() { //连结dots
+    function connectDots() { //连结dots，一个交互作用
         for (i = 0; i < dots.nb; i++) {
             for (j = 0; j < dots.nb; j++) {
                 i_dot = dots.array[i];
@@ -173,7 +172,7 @@
 
     function animateDots() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = 'rgb(51,51,51)';
+        ctx.fillStyle = 'rgb(20,20,20)';
         ctx.rect(0, 0, canvas.width, canvas.height); //画点
         ctx.fill();
         moveDots();
@@ -182,8 +181,6 @@
 
         requestAnimationFrame(animateDots);
     }
-    createDots();
-
     header.addEventListener('mousemove', function(e) {
         mousePosition.x = e.pageX;
         mousePosition.y = e.pageY;
@@ -194,5 +191,6 @@
         mousePosition.y = canvas.height / 2;
     });
     window.addEventListener('resize', setWidthHeight);
+    createDots();
     requestAnimationFrame(animateDots);
 })();

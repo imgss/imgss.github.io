@@ -22,7 +22,7 @@ body {
 }
 
 div {
-    font-size: 1.2em !important;
+    font-size: 1.2em;
 }
 
 .row a {
@@ -45,6 +45,7 @@ div {
 div span {
     font-size: small;
     margin-top: 16px;
+    text-align: center;
     display: block;
     opacity: 0;
 }
