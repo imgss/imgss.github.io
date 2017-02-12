@@ -6,6 +6,22 @@ body {
     font-size: 14px;
 }
 
+.page-header {
+    padding: 24px 32px;
+    margin: 0;
+    margin-bottom: 3rem;
+    box-sizing: border-box;
+    background-image: none;
+    height: 300px;
+}
+
+.page-header div {
+    z-index: 10;
+    font-size: 1.2em;
+    display: block;
+    margin-top: 26px;
+}
+
 .page-header canvas {
     top: 0;
     left: 0;
@@ -13,12 +29,10 @@ body {
     z-index: -1;
 }
 
-div {
-    font-size: 1.2em;
-}
-
 .row a {
-    line-height: 30px;
+    line-height: 60px;
+    vertical-align: middle;
+    font-size: 1.2rem;
     text-align: center;
     display: block;
 }
@@ -26,7 +40,8 @@ div {
 .row img {
     width: 20px !important;
     height: 20px !important;
-    vertical-align: text-bottom;
+    vertical-align: middle;
+    line-height: 60px;
 }
 
 
@@ -36,7 +51,7 @@ div {
 
 div span {
     font-size: small;
-    margin-top: 16px;
+    margin-top: -8px;
     text-align: center;
     display: block;
     opacity: 0;
@@ -48,23 +63,13 @@ div a {
     vertical-align: middle;
 }
 
-.page-header {
-    padding: 24px 32px;
-    margin: 0;
-    margin-bottom: 3rem;
-    box-sizing: border-box;
-    background-color: transparent !important;
-    background-image: none;
-}
-
-.page-header div {
-    z-index: 10;
-}
-
 @media screen and (max-width: 400px) {
     footer {
         position: absolute;
         bottom: 10px;
+    }
+    .page-header {
+        background-color: rgba(255, 255, 255, 0.4) !important;
     }
 }
 
@@ -72,12 +77,18 @@ div a {
     footer {
         position: static;
     }
+    .page-header {
+        background-color: rgba(255, 255, 255, 0.4) !important;
+    }
 }
 
 @media screen and (min-width: 801px) {
     footer {
         position: absolute;
         bottom: 10px;
+    }
+    .page-header {
+        background-color: transparent !important;
     }
 }
 
