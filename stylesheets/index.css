@@ -183,3 +183,30 @@ footer>span {
         border-color: #fff;
     }
 }
+
+@-webkit-keyframes opac3 {
+    50% {
+        border-color: #aaa;
+    }
+    100% {
+        border-color: #444;
+    }
+}
+
+@-webkit-keyframes opac2 {
+    50% {
+        border-color: #fff;
+    }
+    100% {
+        border-color: #aaa;
+    }
+}
+
+@-webkit-keyframes opac2 {
+    50% {
+        border-color: #444;
+    }
+    100% {
+        border-color: #fff;
+    }
+}
