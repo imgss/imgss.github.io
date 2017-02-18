@@ -13,6 +13,7 @@ body {
     box-sizing: border-box;
     background-image: none;
     height: 300px;
+    overflow: hidden;
 }
 
 .page-header>div {
@@ -20,6 +21,13 @@ body {
     font-size: 1.2em;
     display: block;
     margin-top: 26px;
+    height: 100%;
+    transition: all 0.3s;
+}
+
+.page-header>div:last-child {
+    display: flex;
+    justify-content: center;
 }
 
 .page-header canvas {
@@ -44,6 +52,11 @@ body {
     line-height: 60px;
 }
 
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
 
 /*li:hover {
     border-bottom: solid 2px rgb(60, 80, 252);
@@ -62,6 +75,27 @@ div a {
     color: #ed6a43;
     vertical-align: middle;
 }
+
+ul a {
+    color: white;
+}
+
+ul a:hover ::before {
+    content: '@'
+}
+
+.account {
+    width: 400px;
+    border-radius: 10%;
+    display: flex !important;
+    justify-content: space-around;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.8);
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.account * {}
 
 @media screen and (max-width: 400px) {
     footer {
