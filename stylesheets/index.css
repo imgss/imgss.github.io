@@ -96,16 +96,19 @@ ul a:hover ::before {
 }
 
 .up-down {
-    transition: all 0.3s ease-in-out;
     width: 100%;
     display: block;
     position: absolute;
     top: 270px;
     color: white;
-    cursor: pointer;
     text-align: center;
     margin: 0;
     padding: 0;
+}
+
+.up-down i {
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
 }
 
 
