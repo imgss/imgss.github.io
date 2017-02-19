@@ -1,4 +1,5 @@
 var div = document.querySelector('section .row');
+var upBotton = document.querySelector('.up-down');
 window.onload = function() {
     var spanArr = document.querySelectorAll('.row span');
     var spanArr = Array.prototype.slice.call(spanArr);
@@ -9,6 +10,23 @@ window.onload = function() {
     });
 }
 document.addEventListener('mousewheel', wheelHandler);
+
+function wheelHandler(e) {
+    e.wheelDelta > 0 ? slideTo('26px') : slideTo('-274px');
+}
+upBotton.addEventListener('click', clickHandler);
+
+function clickHandler() {
+    if (getMargin() > 0) {
+        slideTo('-274px');
+        upBotton.style.transform = 'rotate(180deg)';
+
+    } else {
+        slideTo('26px');
+        upBotton.style.transform = 'rotate(0deg)';
+    }
+
+}
 div.addEventListener('mouseover', function(e) {
     e.stopPropagation();
     if (e.target.nodeName == 'A') {
@@ -22,19 +40,16 @@ div.addEventListener('mouseout', function(e) {
     };
 });
 
-function wheelHandler(e) {
-    e.wheelDelta > 0 ? slideTo('26px') : slideTo('-274px');
-}
+
 
 function slideTo(px) {
     document.querySelector(".page-header>div").style.marginTop = px;
 
 };
 
-function slide(dir) {
+function getMargin() {
     var slider = document.querySelector(".page-header>div");
     var base = parseInt(getComputedStyle(slider, null)['margin-top']);
-    dir == 'up' ? base = (base - 300) + 'px' : base = (base + 300) + 'px';
-    slider.style.marginTop = base;
+    return base;
 
 }
