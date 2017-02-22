@@ -8,11 +8,13 @@ body {
 
 .page-header {
     padding: 24px 32px;
+    box-sizing: border-box;
     margin: 0;
     margin-bottom: 3rem;
     box-sizing: border-box;
     background-image: none;
     height: 300px;
+    box-shadow: 0 1px 20px #333;
     overflow: hidden;
 }
 
@@ -39,11 +41,27 @@ body {
 
 .row a {
     line-height: 60px;
-    vertical-align: middle;
     font-size: 1.2rem;
     text-align: center;
     display: block;
 }
+
+
+/*.row a::before {
+    position: absolute;
+    background: #4285f4;
+    content: '';
+    bottom: 0;
+    transition: 0.2s transform linear;
+    height: 2px;
+    transform: scale(0);
+}
+
+.row a:hover::before {
+    transform: scale(1);
+    left: 0;
+    right: 0;
+}*/
 
 .row img {
     width: 20px !important;
