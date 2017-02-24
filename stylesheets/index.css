@@ -39,7 +39,7 @@ body {
     z-index: -1;
 }
 
-.row a {
+.col-md-3>a {
     line-height: 60px;
     font-size: 1.2rem;
     text-align: center;
@@ -88,7 +88,7 @@ div span {
     opacity: 0;
 }
 
-div a {
+div>a {
     text-decoration: none !important;
     color: #ed6a43;
     vertical-align: middle;
