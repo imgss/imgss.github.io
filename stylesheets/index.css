@@ -7,7 +7,7 @@ body {
 }
 
 .page-header {
-    padding: 24px 32px;
+    padding: 0 32px;
     box-sizing: border-box;
     margin: 0;
     margin-bottom: 3rem;
@@ -21,13 +21,10 @@ body {
 .page-header>div {
     z-index: 10;
     font-size: 1.2em;
-    display: block;
-    margin-top: 26px;
-    height: 100%;
     transition: all 0.3s;
 }
 
-.page-header>div:last-child {
+.wrapper>div:last-child {
     display: flex;
     justify-content: center;
 }
@@ -46,22 +43,17 @@ body {
     display: block;
 }
 
-
-/*.row a::before {
-    position: absolute;
-    background: #4285f4;
-    content: '';
-    bottom: 0;
-    transition: 0.2s transform linear;
-    height: 2px;
-    transform: scale(0);
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    justify-content: space-around;
+    align-items: center;
 }
 
-.row a:hover::before {
-    transform: scale(1);
-    left: 0;
-    right: 0;
-}*/
+.wrapper>div {
+    height: 250px;
+}
 
 .row img {
     width: 20px !important;
@@ -103,10 +95,8 @@ ul a:hover ::before {
 }
 
 .account {
-    width: 400px;
     border-radius: 10%;
     display: flex !important;
-    justify-content: space-around;
     flex-direction: column;
     background: rgba(0, 0, 0, 0.8);
     margin-left: 0;
@@ -160,6 +150,9 @@ ul a:hover ::before {
     .page-header {
         background-color: rgba(255, 255, 255, 0.4) !important;
     }
+    .account {
+        width: 80%;
+    }
 }
 
 @media screen and (min-width: 400px) and (max-width: 800px) {
@@ -168,6 +161,9 @@ ul a:hover ::before {
     }
     .page-header {
         background-color: rgba(255, 255, 255, 0.4) !important;
+    }
+    .account {
+        width: 400px;
     }
 }
 
@@ -178,6 +174,9 @@ ul a:hover ::before {
     }
     .page-header {
         background-color: transparent !important;
+    }
+    .account {
+        width: 400px;
     }
 }
 

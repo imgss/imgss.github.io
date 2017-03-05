@@ -12,17 +12,17 @@ window.onload = function() {
 document.addEventListener('mousewheel', wheelHandler);
 
 function wheelHandler(e) {
-    e.wheelDelta > 0 ? slideTo('26px') : slideTo('-274px');
+    e.wheelDelta > 0 ? slideTo('0px') : slideTo('-300px');
 }
 upBotton.addEventListener('click', clickHandler);
 
 function clickHandler() {
-    if (getMargin() > 0) {
-        slideTo('-274px');
+    if(document.querySelector(".wrapper").style.transform !== "translateY(-300px)") {
+        slideTo('-300px');
         upBotton.style.transform = 'rotate(180deg)';
 
     } else {
-        slideTo('26px');
+        slideTo('0px');
         upBotton.style.transform = 'rotate(0deg)';
     }
 
@@ -43,7 +43,7 @@ function clickHandler() {
 
 
 function slideTo(px) {
-    document.querySelector(".page-header>div").style.marginTop = px;
+    document.querySelector(".wrapper").style.transform = 'translateY(' + px + ')';
 
 };
 
