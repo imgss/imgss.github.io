@@ -173,8 +173,11 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <h1 id="怎么将hexo博客部署到github子路径上"><a href="#怎么将hexo博客部署到github子路径上" class="headerlink" title="怎么将hexo博客部署到github子路径上"></a>怎么将hexo博客部署到github子路径上</h1><p>hexo有一个脚手架工具，然后还有一个<code>hexo d</code>命令，在<code>_config.yml</code>文档中配置一下服务器的路径，可以自动部署到github上，于是，我就试了一下这个命令。然后，我的主页就被替换了。。。就是整个.github.io仓库完全被替换了，所以我应该介绍一下正确的姿势。</p>
-<h2 id="配置-config-yml"><a href="#配置-config-yml" class="headerlink" title="配置_config.yml"></a>配置_config.yml</h2><p>hexo是将md文档转换成一系列漂亮的html文档的工具，而且可以可以换漂亮的皮肤，得到一个漂亮的静态博客网站。hexo是怎么知道html页面引用的css，js的路径关系呢，答案就是这个配置文档了，如果配置不正确，那么就会得到一个上世纪90年代的页面了。正确的引用配置在url字段中。</p>
+                <h1 id="如何将hexo博客部署到github子路径上"><a href="#如何将hexo博客部署到github子路径上" class="headerlink" title="如何将hexo博客部署到github子路径上"></a>如何将hexo博客部署到github子路径上</h1><p>hexo有一个脚手架工具，然后还有一个<code>hexo d</code>命令，在<code>_config.yml</code>文档中配置一下服务器的路径，可以自动部署到github上，于是，我就试了一下这个命令。然后，我的主页就被替换了。。。就是整个.github.io仓库完全被替换了，所以我应该介绍一下正确的姿势。</p>
+<h2 id="配置-config-yml"><a href="#配置-config-yml" class="headerlink" title="配置_config.yml"></a>配置_config.yml</h2><p>hexo是将md文档转换成一系列漂亮的html文档的工具，而且可以换漂亮的皮肤<a href="https://hexo.io/themes/" target="_blank" rel="external">主题</a>，得到一个漂亮的静态博客网站。</p>
+<p>那么，hexo是怎么知道html页面引用的css，js的路径关系呢，答案就是这个配置文档了，如果配置不正确，此时css和图片的加载就不会正确进行，然后就会得到一个上世纪90年代的页面。正确的引用配置在url字段中。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># URL</div><div class="line">## If your site is put in a subdirectory, set url as &apos;http://yoursite.com/child&apos; and root as &apos;/child/&apos;</div><div class="line">url: https://imgss.github.io</div><div class="line">root: /blog/</div></pre></td></tr></table></figure>
+<p>上面是我的配置，就是将博客的根路径，放在<strong><a href="https://imgss.github.io/blog">https://imgss.github.io/blog</a></strong>下面。配置好之后，使用<code>hexo g</code>命令就可以从source目录的md文件正确的在public文件夹下生成</p>
 
                 <hr>
                 
@@ -197,7 +200,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#怎么将hexo博客部署到github子路径上"><span class="toc-text">怎么将hexo博客部署到github子路径上</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#配置-config-yml"><span class="toc-text">配置_config.yml</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#如何将hexo博客部署到github子路径上"><span class="toc-text">如何将hexo博客部署到github子路径上</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#配置-config-yml"><span class="toc-text">配置_config.yml</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
