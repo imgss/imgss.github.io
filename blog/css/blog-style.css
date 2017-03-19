@@ -373,7 +373,9 @@ article blockquote footer {
     background-attachment: scroll;
     background-size: cover;
     height: 300px;
-    display: table;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     width: 100%;
     margin-bottom: 20px;
 }

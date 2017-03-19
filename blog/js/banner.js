@@ -1,7 +1,7 @@
 (function() { //来自网络
     var tScale = window.devicePixelRatio,
-        canvas = document.querySelector('.intro-header canvas'),
         header = document.querySelector('.intro-header'),
+        canvas = header.querySelector('canvas'),
         dotMaxRad = 4 * tScale,
         maxCount = 300,
         Max_connect = 4; //最多有几个点与一个点连接
@@ -138,7 +138,10 @@
         drawDots();
     }
 
-    window.addEventListener('resize', setWidthHeight);
+    window.addEventListener('resize', function() {
+        setWidthHeight();
+        requestAnimationFrame(animateDots);
+    });
     createDots();
     requestAnimationFrame(animateDots);
 })();
