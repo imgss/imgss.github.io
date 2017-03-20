@@ -374,6 +374,7 @@ article blockquote footer {
     background-size: cover;
     height: 300px;
     display: flex;
+    align-items: center;
     justify-content: center;
     flex-direction: column;
     width: 100%;
@@ -502,6 +503,8 @@ a:focus {
 
 canvas {
     position: absolute;
+    left: 0;
+    top: 0;
     width: 0;
     z-index: -1;
 }
