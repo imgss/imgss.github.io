@@ -29,6 +29,8 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/blog/css/blog-style.css">
+    <!-- highlight CSS -->
+    <link rel="stylesheet" href="/blog/css/default.css">
 
     <!-- Pygments Github CSS -->
     <link rel="stylesheet" href="/blog/css/syntax.css">
@@ -441,6 +443,9 @@ node 爬虫入门如果你之前没有用node写过一个爬虫，可以从这�
 <!-- banner -->
 <script src="/blog/js/banner.js"></script>
 
+<!-- highlight-->
+<script src="/blog/js/highlight.pack.js"></script>
+
 <!-- Bootstrap Core JavaScript -->
 <script src="/blog/js/bootstrap.min.js"></script>
 
@@ -448,6 +453,7 @@ node 爬虫入门如果你之前没有用node写过一个爬虫，可以从这�
 <script src="/blog/js/blog.js"></script>
 
 <!-- async load function -->
+<script>hljs.initHighlightingOnLoad();</script>
 <script>
     function async(u, c) {
       var d = document, t = 'script',
