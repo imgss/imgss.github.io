@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        ES6快到碗里来｜Imgss&#39;s blog
+        心迹｜Imgss&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="https://imgss.github.io/blog/2017/03/17/getES6/">
+    <link rel="canonical" href="https://imgss.github.io/blog/2017/03/23/心迹/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/blog/css/bootstrap.min.css">
@@ -134,18 +134,18 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>ES6快到碗里来</h1>
+                    <h1>心迹</h1>
                     
                     <span class="meta">
                          作者 Imgss
                         <span>
-                          日期 2017-03-17
+                          日期 2017-03-23
                          </span>
                     </span>
                     <div class="tags text-center">
                         
-                        <a class="tag" href="/blog/tags/#爬虫 node"
-                           title="爬虫 node">爬虫 node</a>
+                        <a class="tag" href="/blog/tags/#心迹"
+                           title="心迹">心迹</a>
                         
                     </div>
                 </div>
@@ -154,7 +154,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            ES6快到碗里来
+            心迹
         </span>
     </div>
 </header>
@@ -165,86 +165,32 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <p>原来我要的就在这里，<a href="https://github.com/ruanyf/es6tutorial" target="_blank" rel="external">ES6md文件</a>，知道真相的我眼泪掉下来。。。 2017.3.22</p>
-<p>学习ES6的时候，没少看<a href="http://es6.ruanyifeng.com/" target="_blank" rel="external">ES6入门</a>，到现在也就明白了个大概（惭愧脸）。这里不谈ES6,只谈怎么把ES6的页面爬下来放到一起成为一个离线文档。</p>
-<p>通俗易懂<em><strong>小白friendly</strong></em></p>
-<h2 id="node-爬虫入门"><a href="#node-爬虫入门" class="headerlink" title="node 爬虫入门"></a>node 爬虫入门</h2><p>如果你之前没有用node写过一个爬虫，可以从这篇文章开始。<a href="https://segmentfault.com/a/1190000006666961" target="_blank" rel="external">Node.JS 妹子图爬虫(1)</a>，除了核心模块外，文章中还用到cheerio这个库来分析访问的页面。cheerio是一个类似于jquery的库，但是运行在node上。而这里主要用到:<br>node的</p>
-<ul>
-<li><code>http</code>模块</li>
-<li><code>fs</code>模块</li>
-<li>ES6promise的一些知识。</li>
-</ul>
-<p>show time!</p>
-<h2 id="分析要抓的页面路径"><a href="#分析要抓的页面路径" class="headerlink" title="分析要抓的页面路径"></a>分析要抓的页面路径</h2><p>这里就放在浏览器上了,当然也可以用http放在后端，F12可以发现，所有链接在一个ol元素里，如图：</p>
-<p><img src="http://images2015.cnblogs.com/blog/1016471/201703/1016471-20170317215623276-1063759418.png" alt=""></p>
-<p>所以把所有链接地址存到数组里的代码如下:(在控制台输入)</p>
-<pre><code>var links=[];
-
-Array.from($(&quot;[start=&#39;0&#39;] a&quot;)).forEach(function(e){links.push(e.getAttribute(&quot;href&quot;))});
-
-JSON.stringfy(links)//便于复制数组
-</code></pre><p><img src="http://images2015.cnblogs.com/blog/1016471/201703/1016471-20170317220103932-1093404518.png" alt=""></p>
-<h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><p>新建一个js文件。接下来就是陪links玩了。首先我们写出了以下的渣代码，不过还好可以跑</p>
-<pre><code>
-var fs = require(&#39;fs&#39;),http = require(&#39;http&#39;);
-var links = [&quot;#README&quot;, &quot;#docs/intro&quot;, &quot;#docs/let&quot;, &quot;#docs/destructuring&quot;, &quot;#docs/string&quot;, &quot;#docs/regex&quot;, &quot;#docs/number&quot;, &quot;#docs/array&quot;, &quot;#docs/function&quot;, &quot;#docs/object&quot;, &quot;#docs/symbol&quot;, &quot;#docs/set-map&quot;, &quot;#docs/proxy&quot;, &quot;#docs/reflect&quot;, &quot;#docs/promise&quot;, &quot;#docs/iterator&quot;, &quot;#docs/generator&quot;, &quot;#docs/generator-async&quot;, &quot;#docs/async&quot;, &quot;#docs/class&quot;, &quot;#docs/decorator&quot;, &quot;#docs/module&quot;, &quot;#docs/module-loader&quot;, &quot;#docs/style&quot;, &quot;#docs/spec&quot;, &quot;#docs/arraybuffer&quot;, &quot;#docs/simd&quot;, &quot;#docs/reference&quot;];
-var allInOne = &quot;&quot;,  
-    host = &quot;http://es6.ruanyifeng.com/&quot;;
-var realLinks = links.map(function(link) { return link.slice(1) + &#39;.md&#39; });//迷之reallinks
-console.log(links.length);
-</code></pre><p>现在你就可以先在命令行里<code>node getES6</code>了，除了得到数组长度外并没有什么用。</p>
-<h2 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h2><p>有了原料之后，开始下锅了，我们的构想是，写一个循环来依次请求这些页面，然后把得到的html字符串写到一起：</p>
-<pre><code>var allInOne = &quot;&quot;,
-    n = 0;//数数用
-
-for(let link of links) {
-    n++;
-    allInOne += getHTML(host + link, n);
-
-}
-}
-</code></pre><p>接下来实现getHtml这个函数:</p>
-<pre><code>function getHTML(url, n, id = &quot;body&quot;) {
-    var promise = new Promise(function(resolve, reject) {//不清楚的看http://es6.ruanyifeng.com/#docs/promise
-        var pageStr = &#39;&#39;;//用于放html或md文件
-        var req = http.get(url, function(res) {//发起请求
-            res.setEncoding(&#39;utf8&#39;);
-            var status = res.statusCode;
-            if(status == &#39;200&#39;) {
-                res.on(&#39;data&#39;, function(chunk) {
-                    pageStr += chunk;
-                });
-
-                res.on(&#39;end&#39;, function(data) {
-                    allInOne += pageStr;
-                    fs.appendFile(`./page/${n}.md`, pageStr, &#39;utf8&#39;, function(e) {//将文件保存到本地的page文件夹下，后缀是md？
-                        console.log(e);
-                    });
-                    console.log(`finish load ${url}`);
-                    resolve();
-                });
-            }
-        });
-    });
-    return promise;
-
-}
-</code></pre><p>将上面两个个代码片段拼到一起，可以先<code>node ES6</code>跑跑看了,是不是与期望不符？下回再说。</p>
+                <p>今天有人给我点了一颗心，在vue-2048小项目下面。好感动:joy:,也许这就是分享的快乐吧，尽管但部分时候，都是在默默的<code>commit</code>,自己为自己的新功能高兴，自己为自己解决掉的bug鼓掌。</p>
+<p>距离离职快一个月了，入了自己想入的行，却发现一切并不像自己想象中的那么美好。体会到真正的沪漂是什么样的感觉，觉得累的同时，却也感觉这种生活更加的真实。</p>
+<p>自问再选一次的话，会不会这么选，答案是肯定的。能做自己喜欢做的事是一种幸福，这种看起来很容易的事情，其实并不是那么容易。许巍的歌词写的好：</p>
+<blockquote>
+<p>在生存面前，那纯洁的理想，原来是那么脆弱不堪。–那一年</p>
+</blockquote>
+<p>雷子也说：</p>
+<blockquote>
+<p>一个人住在这城市</p>
+</blockquote>
+<p>  为了填饱肚子就已精疲力尽</p>
+<p>  还谈什么理想</p>
+<p>  那是我们的美梦</p>
+<p>  –理想</p>
+<p>在生活中，有多少人在<strong>生存</strong>和<strong>理想</strong>的权衡中，选择了前者，就有多少人在坚持着后者，我只不过是这个大军中微不足道的一份子罢了。还有不少人，浑浑噩噩的，也是一辈子。</p>
+<p>希望有更多的人能过上自己想过的那种生活，做着自己喜欢做的事，陪着自己喜欢的人。这个状态貌似每一条都不是那么容易。我大概要求的太多了。</p>
 
                 <hr>
                 
 
                 <ul class="pager">
                     
-                    <li class="previous">
-                        <a href="/blog/2017/03/21/getES6-2/" data-toggle="tooltip" data-placement="top"
-                           title="getES6-2">&larr; Previous Post</a>
-                    </li>
-                    
                     
                     <li class="next">
-                        <a href="/blog/2017/03/12/shipyard-and-me/1/" data-toggle="tooltip" data-placement="top"
-                           title="船厂岁月-1">Next Post &rarr;</a>
+                        <a href="/blog/2017/03/21/getES6-2/" data-toggle="tooltip" data-placement="top"
+                           title="getES6-2">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -257,7 +203,7 @@ for(let link of links) {
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#node-爬虫入门"><span class="toc-text">node 爬虫入门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析要抓的页面路径"><span class="toc-text">分析要抓的页面路径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务端"><span class="toc-text">服务端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#请求"><span class="toc-text">请求</span></a></li></ol>
+                    
                 </div>
             </div>
         </div>
@@ -279,8 +225,8 @@ for(let link of links) {
                     </h5>
                     <div class="tags">
                         
-                        <a class="tag" href="/blog/tags/#爬虫 node"
-                           title="爬虫 node">爬虫 node</a>
+                        <a class="tag" href="/blog/tags/#心迹"
+                           title="心迹">心迹</a>
                         
                     </div>
                 </section>
