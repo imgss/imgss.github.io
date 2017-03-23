@@ -30,7 +30,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/blog/css/blog-style.css">
     <!-- highlight CSS -->
-    <link rel="stylesheet" href="/blog/css/default.css">
+    <link rel="stylesheet" href="/blog/css/doxy.css">
 
     <!-- Pygments Github CSS -->
     <link rel="stylesheet" href="/blog/css/syntax.css">
@@ -159,7 +159,11 @@
         
         <div class="post-content-preview">
             <p>
-                下划线动画今天看别人的博客的时候，发现鼠标放到上面，会有下划线从中间到两边出现，十分神奇，参考别人的教程之后，终于搞明白是怎么回事，原来是 :before命令在捣鬼。直接看代码：position: absolute;  bottom: 0px;  left: 0;  content: &quot..
+                下划线动画今天看别人的博客的时候，发现鼠标放到上面，会有下划线从中间到两边出现，十分神奇，参考别人的教程之后，终于搞明白是怎么回事，原来是 :before命令在捣鬼。直接看代码：
+position: absolute;
+  bottom: 0px;
+  left: 0;
+  content: &..
             </p>
         </div>
     </a>
@@ -244,6 +248,9 @@
                     
                     
                     
+                    <a href="/blog/tags/#爬虫 node" title="爬虫 node"
+                       rel="2">爬虫 node</a>
+                    
                     
                     
                     
@@ -323,7 +330,7 @@
 <script src="/blog/js/banner.js"></script>
 
 <!-- highlight-->
-<script src="/blog/js/highlight.pack.js"></script>
+<script src="/blog/js/prettify.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="/blog/js/bootstrap.min.js"></script>
@@ -332,7 +339,6 @@
 <script src="/blog/js/blog.js"></script>
 
 <!-- async load function -->
-<script>hljs.initHighlightingOnLoad();</script>
 <script>
     function async(u, c) {
       var d = document, t = 'script',

@@ -30,7 +30,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/blog/css/blog-style.css">
     <!-- highlight CSS -->
-    <link rel="stylesheet" href="/blog/css/default.css">
+    <link rel="stylesheet" href="/blog/css/doxy.css">
 
     <!-- Pygments Github CSS -->
     <link rel="stylesheet" href="/blog/css/syntax.css">
@@ -165,8 +165,18 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <h1 id="下划线动画"><a href="#下划线动画" class="headerlink" title="下划线动画"></a>下划线动画</h1><p>今天看别人的博客的时候，发现鼠标放到上面，会有下划线从中间到两边出现，十分神奇，参考别人的教程之后，终于搞明白是怎么回事，原来是 <code>:before</code>命令在捣鬼。<br>直接看代码：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">position: absolute;</div><div class="line">  bottom: 0px;</div><div class="line">  left: 0;</div><div class="line">  content: &quot;&quot;;</div><div class="line">  width: 0%;</div><div class="line">  height: 1px;</div><div class="line">  background: #7e7e7e;</div><div class="line">  display: block;</div><div class="line">  -webkit-transition: width 0.25s ease;</div><div class="line">  transition: width 0.25s ease; &#125;</div></pre></td></tr></table></figure></p>
-<p>before 的内容为空，将width先设置为0，宽度为1px,当鼠标移动到上面时，通过transition过渡width将width变成100%，形成下划线动画效果。</p>
+                <h1 id="下划线动画"><a href="#下划线动画" class="headerlink" title="下划线动画"></a>下划线动画</h1><p>今天看别人的博客的时候，发现鼠标放到上面，会有下划线从中间到两边出现，十分神奇，参考别人的教程之后，终于搞明白是怎么回事，原来是 <code>:before</code>命令在捣鬼。<br>直接看代码：</p>
+<pre><code>position: absolute;
+  bottom: 0px;
+  left: 0;
+  content: &quot;&quot;;
+  width: 0%;
+  height: 1px;
+  background: #7e7e7e;
+  display: block;
+  -webkit-transition: width 0.25s ease;
+  transition: width 0.25s ease; }
+</code></pre><p>before 的内容为空，将width先设置为0，宽度为1px,当鼠标移动到上面时，通过transition过渡width将width变成100%，形成下划线动画效果。</p>
 
                 <hr>
                 
@@ -295,7 +305,7 @@
 <script src="/blog/js/banner.js"></script>
 
 <!-- highlight-->
-<script src="/blog/js/highlight.pack.js"></script>
+<script src="/blog/js/prettify.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="/blog/js/bootstrap.min.js"></script>
@@ -304,7 +314,6 @@
 <script src="/blog/js/blog.js"></script>
 
 <!-- async load function -->
-<script>hljs.initHighlightingOnLoad();</script>
 <script>
     function async(u, c) {
       var d = document, t = 'script',

@@ -30,7 +30,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/blog/css/blog-style.css">
     <!-- highlight CSS -->
-    <link rel="stylesheet" href="/blog/css/default.css">
+    <link rel="stylesheet" href="/blog/css/doxy.css">
 
     <!-- Pygments Github CSS -->
     <link rel="stylesheet" href="/blog/css/syntax.css">
@@ -171,11 +171,15 @@
                 <h1 id="如何将hexo博客部署到github子路径上"><a href="#如何将hexo博客部署到github子路径上" class="headerlink" title="如何将hexo博客部署到github子路径上"></a>如何将hexo博客部署到github子路径上</h1><p>hexo有一个脚手架工具，然后还有一个<code>hexo d</code>命令，在<code>_config.yml</code>文档中配置一下服务器的路径，可以自动部署到github上，于是，我就试了一下这个命令。然后，我的主页就被替换了。。。就是整个.github.io仓库完全被替换了，所以我应该说一下自己爬过的坑。</p>
 <h3 id="配置-config-yml"><a href="#配置-config-yml" class="headerlink" title="配置_config.yml"></a>配置_config.yml</h3><p>hexo是将md文档转换成一系列漂亮的html文档的工具，而且可以换漂亮的皮肤<a href="https://hexo.io/themes/" target="_blank" rel="external">主题</a>，得到一个漂亮的静态博客网站。</p>
 <p>那么，hexo是怎么知道html页面引用的css，js的路径关系呢，答案就是这个配置文档了，如果配置不正确，此时css和图片的加载就不会正确进行，然后就会得到一个上世纪90年代的页面。正确的引用配置在url字段中。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># URL</div><div class="line">## If your site is put in a subdirectory, set url as &apos;http://yoursite.com/child&apos; and root as &apos;/child/&apos;</div><div class="line">url: https://imgss.github.io</div><div class="line">root: /blog/</div></pre></td></tr></table></figure>
-<p>上面是我的配置，就是将博客的根路径，放在<strong><a href="https://imgss.github.io/blog">https://imgss.github.io/blog</a></strong>下面。配置好之后，使用<code>hexo g</code>命令就可以从source目录的md文件正确的在public文件夹下生成整个博客的所需的所有资源文件，主要包括css,js，和archives(文章目录)。</p>
+<pre><code># URL
+## If your site is put in a subdirectory, set url as &#39;http://yoursite.com/child&#39; and root as &#39;/child/&#39;
+url: https://imgss.github.io
+root: /blog/
+</code></pre><p>上面是我的配置，就是将博客的根路径，放在<strong><a href="https://imgss.github.io/blog">https://imgss.github.io/blog</a></strong>下面。配置好之后，使用<code>hexo g</code>命令就可以从source目录的md文件正确的在public文件夹下生成整个博客的所需的所有资源文件，主要包括css,js，和archives(文章目录)。</p>
 <h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><p>前面已经说过，直接使用<code>hexo d</code>命令会将博客部署在站点的根路径下面。所以，不能直接使用这个命令。那么该怎么办呢，就是在你本地的xxx.github.io仓库文件夹下面，新建一个blog文件夹，然后把刚才public文件夹下面的所有文件复制到blog文件夹下，然后push到远程仓库，然后你就在子路径下部署了这个博客。<br>最后在你的主页上加一个导向这个路径的超链接，就大功告成了。<br>是不是很简单？当然，这么做几次，你就会发现一旦你写了文章，就要一直去把新生成的文件复制到blog文件夹下，这时就显得很蠢了。。</p>
-<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>突发奇想，可以写一个自动移动到目标文件夹下的命令也是极好的。可以努力一下。可以用node，可以用python的<code>shutil</code>，但还是批处理最简单：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">xcopy e:\tmp\blog\public e:\github\imgss.github.io\blog /e/h</div></pre></td></tr></table></figure></p>
-<p>把上面的命令的两个e开头的路径换成你hexo的生成博客的public路径，另一个是你github博客的部署路径，然后保存成一个记事本里</p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>突发奇想，可以写一个自动移动到目标文件夹下的命令也是极好的。可以努力一下。可以用node，可以用python的<code>shutil</code>，但还是批处理最简单：</p>
+<pre><code>xcopy e:\tmp\blog\public e:\github\imgss.github.io\blog /e/h
+</code></pre><p>把上面的命令的两个e开头的路径换成你hexo的生成博客的public路径，另一个是你github博客的部署路径，然后保存成一个记事本里</p>
 <p>后缀名改为<code>.bat</code>，每次更新博客到public里了，点这个文件一下，就ok。</p>
 
                 <hr>
@@ -308,7 +312,7 @@
 <script src="/blog/js/banner.js"></script>
 
 <!-- highlight-->
-<script src="/blog/js/highlight.pack.js"></script>
+<script src="/blog/js/prettify.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="/blog/js/bootstrap.min.js"></script>
@@ -317,7 +321,6 @@
 <script src="/blog/js/blog.js"></script>
 
 <!-- async load function -->
-<script>hljs.initHighlightingOnLoad();</script>
 <script>
     function async(u, c) {
       var d = document, t = 'script',

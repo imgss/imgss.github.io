@@ -27,7 +27,7 @@ $(document).ready(function() {
 });
 
 // responsive embed videos
-$(document).ready(function () {
+$(document).ready(function() {
     $('iframe[src*="youtube.com"]').wrap('<div class="embed-responsive embed-responsive-16by9"></div>');
     $('iframe[src*="youtube.com"]').addClass('embed-responsive-item');
     $('iframe[src*="vimeo.com"]').wrap('<div class="embed-responsive embed-responsive-16by9"></div>');
@@ -35,9 +35,9 @@ $(document).ready(function () {
 });
 
 // 判断是不是博文页面
-function isPages(attr){
+function isPages(attr) {
     var currentBoolean = document.querySelector('.navbar.navbar-custom').getAttribute(attr);
-    if(currentBoolean === 'true'){return true;}
+    if(currentBoolean === 'true') { return true; }
     return false;
 }
 /*
@@ -47,18 +47,18 @@ function isPages(attr){
         2 给目标对象切换class
         3 触发的高度 (可选项,如果不指定高度,会将DOM的高度作为触发高度)
 */
-function scrollCheck(scrollTarget, toggleClass, scrollHeight){
-    document.addEventListener('scroll',function(){
-    var currentTop = window.pageYOffset;
-        currentTop > (scrollHeight||scrollTarget.clientHeight)
-        ?scrollTarget.classList.add(toggleClass)
-        :scrollTarget.classList.remove(toggleClass)
+function scrollCheck(scrollTarget, toggleClass, scrollHeight) {
+    document.addEventListener('scroll', function() {
+        var currentTop = window.pageYOffset;
+        currentTop > (scrollHeight || scrollTarget.clientHeight) ?
+            scrollTarget.classList.add(toggleClass) :
+            scrollTarget.classList.remove(toggleClass)
     })
 }
 
 //主页
-(function(){
-    if(!isPages('data-ispost')){
+(function() {
+    if(!isPages('data-ispost')) {
         var navbar = document.querySelector('.navbar.navbar-custom')
         navbar.classList.add('is-fixed');
     }
@@ -66,32 +66,41 @@ function scrollCheck(scrollTarget, toggleClass, scrollHeight){
 })();
 
 /*
-* 先获取H1标签
-* 然后滚动出现固定导航条后
-* 将其内容放到上面居中显示
-* */
+ * 先获取H1标签
+ * 然后滚动出现固定导航条后
+ * 将其内容放到上面居中显示
+ * */
 
 /*
     博文页面
 */
-(function(){
-    if (isPages('data-ispost')){
+(function() {
+    if(isPages('data-ispost')) {
         var navbar = document.querySelector('.navbar-custom');
         var introHeader = document.querySelector('.intro-header').offsetHeight;
         var introHeader = introHeader > 497 ? introHeader : 400;
         var toc = document.querySelector('.toc-wrap');
         var postTitle = document.querySelector('.post-title-haojen');
-        scrollCheck(toc,'toc-fixed',introHeader-60);
-        scrollCheck(navbar,'is-fixed');
-        scrollCheck(postTitle,'post-title-fixed',introHeader-60);
+        scrollCheck(toc, 'toc-fixed', introHeader - 60);
+        scrollCheck(navbar, 'is-fixed');
+        scrollCheck(postTitle, 'post-title-fixed', introHeader - 60);
     }
 })();
 
-(function () {
+(function() {
     var navTop = document.querySelector('#nav-top');
-    navTop.ondblclick = function () {
+    navTop.ondblclick = function() {
         $('body').animate({
             scrollTop: 0
         }, 500)
     }
 })();
+
+$('pre div').each(function() {
+    $(this).replaceWith(`<li>${$(this).text()}<li/>`);
+
+})
+$(window).load(function() {
+    $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+    prettyPrint();
+})
