@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        Imgss&#39;s blog
+        帮你统计阅读量｜Imgss&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="https://imgss.github.io/blog/tags/心迹/">
+    <link rel="canonical" href="https://imgss.github.io/blog/2017/03/27/帮你统计阅读量/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/blog/css/bootstrap.min.css">
@@ -39,7 +39,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="true
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
 " data-ishome = "false" >
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -120,157 +120,163 @@
 
 <!-- Main Content -->
 
+<!--only post-->
 
-<!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
-    <div class="row">
-        <header class="intro-header">
-            <div class="container">
-                <div class="site-heading text-center">
-                    <div class="about-me">
-                        <!--移动端头部显示-->
-                        <img src="https://imgss.github.io/imgs/avatar.jpg"/>
-                        <h5><a href="/blog/about/">Imgss</a></h5>
-                        <p>爱摄影，爱coding</p>
+
+<img class="wechat-title-img"
+     src="https://imgss.github.io/imgs/banner.jpg">
+
+
+
+<header class="intro-header">
+<canvas></canvas>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>帮你统计阅读量</h1>
+                    
+                    <span class="meta">
+                         作者 Imgss
+                        <span>
+                          日期 2017-03-27
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/blog/tags/#爬虫 node"
+                           title="爬虫 node">爬虫 node</a>
+                        
+                        <a class="tag" href="/blog/tags/#just for fun"
+                           title="just for fun">just for fun</a>
+                        
                     </div>
                 </div>
             </div>
-        </header>
-    </div>
-</div>
-<!-- Main Content -->
-<div class="container custom-haojen-container">
-    <!-- Post Container -->
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            <!-- Main Content -->
-
-
-
-<div class="post-preview "
-     style="background-image: url('https://imgss.github.io/imgs/banner.jpg')">
-    <a href="/blog/2017/03/23/心迹/">
-        <h2 class="post-title">
-            心迹
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2017-03-23
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                今天有人给我点了一颗心，在vue-2048小项目下面。好感动 😅 ,也许这就是分享的快乐吧，尽管但部分时候，都是在默默的commit,自己为自己的新功能高兴，自己为自己解决掉的bug鼓掌。
-距离离职快一个月了，入了自己想入的行，却发现一切并不像自己想象中的那么美好。体会到真正的沪漂是什么样的感..
-            </p>
         </div>
-    </a>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            帮你统计阅读量
+        </span>
+    </div>
+</header>
 
-</div>
-
-<hr>
-
-
-
-
-<!-- 翻页 pager -->
-
-<ul class="pager">
-    
-    
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h3 id="又是一个简单的爬虫"><a href="#又是一个简单的爬虫" class="headerlink" title="又是一个简单的爬虫"></a>又是一个简单的爬虫</h3><p>我始终相信编程在有用的同时也是有趣的，github上就有很多有意思的小项目。爬虫肯定是其中有意思的一个点。<br>上次我想把阮大的《<a href="http://es6.ruanyifeng.com/" target="_blank" rel="external">ECMAScript 6 入门</a>》爬下来，放到一个文件里，结果代码写好之后，发现人家已经开源到github上了，于是白忙活一场。🤢好在我还是有点小强的基因的，所以就想写这么一个统计博客阅读量的东西。</p>
+<h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><ul>
+<li><code>promise</code>的应用</li>
+<li><code>http</code>模块发起请求</li>
+<li><code>cheerio</code>可选</li>
+<li>正则表达式的应用</li>
 </ul>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
+<li>了解博客园的url结构。<br> 这一步比较简单，翻翻自己的博客就能发现，在翻页的时候，发生改变的是查询字符串<code>“?page=1,2,3...”</code>;所以在发起请求的时候，通过改变查询字符串参数来统计博客每一页的阅读量。</li>
+<li><p>先统计一页的总阅读量<br> 就是用<code>http</code>模块向对应<code>url</code>发起请求，得到页面的html数据后，利用正则匹配出我们想要的数据,代码如下:</p>
+<pre><code> var http=require(&#39;http&#39;),
+     root=&#39;http://www.cnblogs.com/imgss/&#39;;
+     http.get(root +&#39;?page=1&#39;, (res) =&gt; {
+     var status = res.statusCode;
+     var html = &#39;&#39;;
+     if(status == &quot;200&quot;) {
+         res.on(&#39;data&#39;, (data) =&gt; {
+             html += data;
+         });
+         res.on(&#39;end&#39;, () =&gt; {
+             var $ = cheerio.load(html);
+             countStr = $(&#39;.postDesc&#39;).text();
+             console.log(countStr);
+             console.log(&#39;-----------------------------------------------&#39;)
+             var re = /阅读\((\d+)\)/g;
+             if(!countStr) {
+                 return false;
+             }
+             while(true) {
+                 var match = re.exec(countStr); //匹配阅读量数据
+                 if(match)
+                     total += +match[1];//将匹配到的数据加到total里面
+                 else
+                     break;
+             }
+             console.log(&#39;page1的阅读量是&#39;, total);
+         })
+     }
+ })
+</code></pre><p> 这里,<code>countStr = $(&#39;.postDesc&#39;).text();</code>部分是先用cheerio对html进行筛选，得到<code>.postDesc</code>元素下面的text,然后用re表达式进行进一步匹配得到阅读量的数据</p>
+<p> 这里直接用re表达式匹配html也是可行的。只要摘要部分没有类似于”阅读()”的字符就行。</p>
+</li>
+</ol>
 
+                <hr>
+                
 
-        </div>
-        <!-- Sidebar Container -->
-        <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
-
-            <!-- About Me -->
-            <section class="visible-md visible-lg" style="padding: 0 18px">
-                <div class="short-about">
-                    <!--侧边栏头像-->
+                <ul class="pager">
                     
-                    <img src="https://imgss.github.io/imgs/avatar.jpg"/>
                     
-                    <h5><a href="/blog/about/">Imgss</a></h5>
+                    <li class="next">
+                        <a href="/blog/2017/03/23/心迹/" data-toggle="tooltip" data-placement="top"
+                           title="心迹">Next Post &rarr;</a>
+                    </li>
                     
-                    <p>爱摄影，爱coding</p>
-                    
-                    <hr>
-                    <!-- SNS Link 社交 -->
-                    <ul class="list-inline">
-                        
-                        
-                        
-                        <li>
-                            <a target="_blank" href="https://www.zhihu.com/people/锅巴">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa  fa-stack-1x fa-inverse">知</i>
-                                        </span>
-                            </a>
-                        </li>
-                        
+                </ul>
 
-                        
+                
 
-                        
+                
 
-                        
-                        <li>
-                            <a target="_blank" href="https://github.com/imgss">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
+            </div>
 
-                        
-                    </ul>
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#又是一个简单的爬虫"><span class="toc-text">又是一个简单的爬虫</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#知识点"><span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#步骤"><span class="toc-text">步骤</span></a></li></ol>
                 </div>
-            </section>
-
-            <!-- Featured Tags  标签 -->
-            
-            <section>
-                <div class="tags">
-                    
-                    
-                    
-                    
-                    <a href="/blog/tags/#爬虫 node" title="爬虫 node"
-                       rel="3">爬虫 node</a>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <a href="/blog/tags/#船厂岁月🚢" title="船厂岁月🚢"
-                       rel="2">船厂岁月🚢</a>
-                    
-                    
-                </div>
-            </section>
-            
-
-            
-
+            </div>
         </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/blog/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/blog/tags/#爬虫 node"
+                           title="爬虫 node">爬虫 node</a>
+                        
+                        <a class="tag" href="/blog/tags/#just for fun"
+                           title="just for fun">just for fun</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
     </div>
-</div>
+</article>
+
+
+
+
+
 
 <!-- Footer -->
 <!-- Footer -->

@@ -3,12 +3,13 @@
         header = document.querySelector('.intro-header'),
         canvas = header.querySelector('canvas'),
         dotMaxRad = 4 * tScale,
-        maxCount = 300,
-        Max_connect = 4; //最多有几个点与一个点连接
+        maxCount = 200,
+        Max_connect = 3; //最多有几个点与一个点连接
     background_color = 'rgb(3,16,31)';
     ctx = canvas.getContext('2d');
     ctx.lineWidth = .2;
     ctx.strokeStyle = (new Color(150)).style;
+    var color = ['#fbbc05', '#34a853', '#4285f4', '#ea4335', ];
 
     var dots = { //dots集合
         nb: null, //数量
@@ -67,25 +68,36 @@
         this.style = createColorStyle(this.r, this.g, this.b);
     }
 
-    function Dot() { //dot 构造函数
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+    class Dot { //dot 构造函数
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
 
 
-        this.radius = Math.random() * dotMaxRad;
+            this.radius = Math.random() * dotMaxRad;
 
-        this.color = new Color();
-        this.connectNum = 0; //记录有几个点与之相连
-    }
-
-    Dot.prototype = { //每一个实例继承的方法
-        draw: function() {
+            this.color = new Color();
+            this.connectNum = 0; //记录有几个点与之相连
+        };
+        draw() {
+            /************渐变填充 */
+            ctx.beginPath();
+            let rGrd = ctx.createRadialGradient(this.x, this.y, this.radius, this.x, this.y, this.radius + 3);
+            rGrd.addColorStop(0, this.color.style);
+            rGrd.addColorStop(1, 'rgba(255,255,255,0.5)');
+            ctx.fillStyle = rGrd;
+            ctx.arc(this.x, this.y, this.radius + 3, 0, Math.PI * 2, false); //画点
+            ctx.fill();
+            /************渐变填充 */
+            /************直接填充 */
             ctx.beginPath();
             ctx.fillStyle = this.color.style;
-            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false); //画点
+            ctx.arc(this.x, this.y, this.radius + 4, 0, Math.PI * 2, false); //画点
             ctx.fill();
         }
-    };
+
+    }
+
 
     function createDots() { //dots数组
         setWidthHeight();
@@ -132,7 +144,7 @@
     function animateDots() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = background_color;
-        ctx.rect(0, 0, canvas.width, canvas.height); //画点
+        ctx.rect(0, 0, canvas.width, canvas.height);
         ctx.fill();
         connectDot();
         drawDots();
