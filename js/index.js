@@ -2,7 +2,13 @@ var div = document.querySelector('section .row');
 var upBotton = document.querySelector('.up-down i');
 window.onload = function() {
     var spanArr = document.querySelectorAll('.row span');
-    var spanArr = Array.prototype.slice.call(spanArr);
+    spanArr = Array.prototype.slice.call(spanArr);
+
+    var h1 = document.querySelector('.wrapper h1');
+    h1.className = 'animated bounce';
+    //h1.addEventListener('animationend', function() {
+    //document.querySelector('.project-tagline').className = 'project-tagline animated swing infinite';
+    //)}
     spanArr.forEach(function(span, i) {
         setTimeout(function() {
             span.className = 'animated fadeIn';
