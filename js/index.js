@@ -1,5 +1,5 @@
 var div = document.querySelector('section .row');
-var upBotton = document.querySelector('.up-down i');
+var upBotton = document.querySelector('.up-down span');
 window.onload = function() {
     var spanArr = document.querySelectorAll('.row span');
     spanArr = Array.prototype.slice.call(spanArr);
