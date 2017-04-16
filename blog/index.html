@@ -41,6 +41,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="false
 " data-ishome = "true" >
+<img style="width:40px;top:10px;position:absolute;left:50%;border-radius:50%;display:none" src="https://imgss.github.io/imgs/avatar.jpg"/>
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
@@ -244,10 +245,10 @@
 <!-- Page Header -->
 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
     <div class="row">
-        <header class="intro-header">
+        <header class="intro-header" data-spy="affix" data-offset-top="0">
             <div class="container">
                 <div class="site-heading text-center">
-                    <div class="about-me">
+                    <div class="about-me"  >
                         <!--移动端头部显示-->
                         <img src="https://imgss.github.io/imgs/avatar.jpg"/>
                         <h5><a href="/blog/about/">Imgss</a></h5>
@@ -678,7 +679,26 @@ node 爬虫入门如果你之前没有用no..
         if($nav) FastClick.attach($nav);
     })
 </script>
+<script>
+$('[data-spy="affix"]').on('affix.bs.affix',function(){
+    console.log(1);
+    if(!$(this).attr('data-show')){
+            $(this).attr('data-show',1);
+    $(this).css('opacity',0);
+    $('#nav-top img').css('display','inline-block');
 
+    }else{
+                $(this).attr('data-show',0);
+        $(this).css('opacity',1);
+        $('#nav-top img').css('display','none');
+
+    }
+
+
+}).on('affixed.bs.affix',function(){
+    console.log(2)
+})
+</script>
 <!-- Google Analytics -->
 
 
