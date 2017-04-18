@@ -40,7 +40,7 @@
 
 
     function colorValue(min) {
-        return Math.floor(Math.random() * 255 + min);
+        return 240;
     }
 
     function createColorStyle(r, g, b) {
