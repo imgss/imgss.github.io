@@ -2,15 +2,21 @@
 <head>
     <title>博客园阅读量</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="style/css" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
     <script src="/jslib/jquery-3.1.0.min.js"></script>
     <script src="./jet.min.js"></script>
 </head>
-<body>
-    <input type='search' id='search'/>
-    <table>
+<body class="container">
+    <h1>博客园抓取的文章3000篇</h1>
+    <form class="form-group row">
+    <input type='search' id='search' class="form-control" placeholder="搜一下"/>
+    </form>
+    <table class='table-striped table .table-hover'>
         <thead>
             <tr>
+                <td>
+                    用户名
+                </td>
                 <td>
                     文章名称       
                 </td>
@@ -30,7 +36,7 @@ $.get('./maxread3.json',function(result){
     var body='';
     for(var i=0;i<3000;i++){
         var item=result[i];
-        body+=`<tr><td>${item.article}</td><td>${item.maxReadNo}</td></tr>`;
+        body+=`<tr><td>${item.user}</td><td><a  href="${item.maxReadUrl}">${item.article}</a></td><td>${item.maxReadNo}</td></tr>`;
     }
     $('tbody').html(body);
 
@@ -39,7 +45,7 @@ setTimeout(function(){
 var jets = new Jets({
   searchTag: '#search',
   contentTag: '#jetsContent',
-  columns: [0]
+  columns: [1]
 });
 },5000)
 </script>
