@@ -3,7 +3,8 @@
         canvas = document.querySelector('canvas'),
         header = document.querySelector('.page-header'),
         dotMaxRad = 5 * tScale,
-        maxCount = 100;
+        maxCount = 100,
+        background = '#24292e';
     ctx = canvas.getContext('2d');
     ctx.lineWidth = .2;
     ctx.strokeStyle = (new Color(150)).style;
@@ -13,7 +14,7 @@
     };
 
     var dots = { //dots集合
-        nb: null, //数量
+        num: null, //数量
         distance: null,
         d_radius: null,
         array: []
@@ -28,7 +29,7 @@
         canvas.style.height = parentHeight + "px";
         canvas.width = parentWidth * tScale;
         canvas.height = parentHeight * tScale;
-        dots.nb = Math.min(maxCount, parseInt(100 * parentWidth / 1000));
+        dots.num = Math.min(maxCount, parseInt(100 * parentWidth / 1000));
         // 重点在于改变要显示的dots数量之后，如果
         // createDots没有创建那么多，就会有空引用，所以，初始化时就创建300个dots,在
         // 绘制时根据resize取出50——300个进行绘制，这样不会出现dot.y没有定义的错误
@@ -78,7 +79,7 @@
 
         this.radius = Math.random() * dotMaxRad;
 
-        this.color = new Color();
+        this.color = new Color(200);
         this.connectNum = 0; //记录有几个点与之相连
     }
 
@@ -99,7 +100,7 @@
     }
 
     function moveDots() {
-        for(i = 0; i < dots.nb; i++) {
+        for(i = 0; i < dots.num; i++) {
 
             var dot = dots.array[i];
 
@@ -116,8 +117,8 @@
     }
 
     function connectDots() { //连结dots，一个交互作用
-        for(i = 0; i < dots.nb; i++) {
-            for(j = 0; j < dots.nb; j++) {
+        for(i = 0; i < dots.num; i++) {
+            for(j = 0; j < dots.num; j++) {
                 i_dot = dots.array[i];
                 j_dot = dots.array[j];
 
@@ -136,14 +137,14 @@
     }
 
     function connectDot() { //连结dots,自己写的,每个点只能连4个别的点
-        for(i = 0; i < dots.nb; i++) {
-            for(j = 0; j < dots.nb; j++) {
+        for(i = 0; i < dots.num; i++) {
+            for(j = 0; j < dots.num; j++) {
                 i_dot = dots.array[i];
                 j_dot = dots.array[j];
                 if(i_dot.connectNum < 3 && j_dot.connectNum < 3 && distance(i_dot, j_dot) < dots.distance) {
                     ctx.beginPath();
-                    ctx.strokeStyle = averageColorStyles(i_dot, j_dot);
-                    ctx.lineWidth = .2 * tScale;
+                    ctx.strokeStyle = '#cb3340';
+                    ctx.lineWidth = .5 * tScale;
                     ctx.moveTo(i_dot.x, i_dot.y);
                     ctx.lineTo(j_dot.x, j_dot.y);
                     ctx.stroke();
@@ -152,7 +153,7 @@
                 }
             }
         }
-        for(i = 0; i < dots.nb; i++) {
+        for(i = 0; i < dots.num; i++) {
             dots.array[i].connectNum = 0;
         }
 
@@ -164,7 +165,7 @@
     }
 
     function drawDots() {
-        for(i = 0; i < dots.nb; i++) {
+        for(i = 0; i < dots.num; i++) {
             var dot = dots.array[i];
             dot.draw();
         }
@@ -172,8 +173,8 @@
 
     function animateDots() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = 'rgb(20,20,20)';
-        ctx.rect(0, 0, canvas.width, canvas.height); //画点
+        ctx.fillStyle = background;
+        ctx.rect(0, 0, canvas.width, canvas.height);
         ctx.fill();
         moveDots();
         connectDot();

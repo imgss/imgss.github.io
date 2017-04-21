@@ -39,14 +39,12 @@ $.get('./maxread3.json',function(result){
         body+=`<tr><td>${item.user}</td><td><a  href="${item.maxReadUrl}">${item.article}</a></td><td>${item.maxReadNo}</td></tr>`;
     }
     $('tbody').html(body);
+    var jets = new Jets({
+        searchTag: '#search',
+        contentTag: '#jetsContent',
+        columns: [1]
+    });
 
 });
-setTimeout(function(){
-var jets = new Jets({
-  searchTag: '#search',
-  contentTag: '#jetsContent',
-  columns: [1]
-});
-},5000)
 </script>
 </html>
