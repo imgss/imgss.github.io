@@ -15,15 +15,14 @@ window.onload = function() {
         }, (i + 1) * 800);
     });
 }
-document.addEventListener('mousewheel', wheelHandler);
+document.addEventListener('mousewheel',handler);
 
-function wheelHandler(e) {
-    e.wheelDelta > 0 ? slideTo('0px') : slideTo('-300px');
-}
-upBotton.addEventListener('click', clickHandler);
+upBotton.addEventListener('click', handler);
 
-function clickHandler() {
-    if(document.querySelector(".wrapper").style.transform !== "translateY(-300px)") {
+function handler(e) {
+    var avatar_show = document.querySelector(".wrapper").style.transform !== "translateY(-300px)"
+    if( avatar_show ) {
+
         slideTo('-300px');
         upBotton.style.transform = 'rotate(180deg)';
 
