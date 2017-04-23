@@ -478,11 +478,24 @@ a:focus {
 }
 
 .post-preview>a>h2 {
+    position: relative;
     transition: color .3s;
 }
 
-.post-preview:not(:first-of-type)>a:hover>h2 {
-    color: #FC7097;
+.post-preview:not(:first-of-type)>a:hover>h2::before {
+    color: #f66;
+}
+.post-preview:not(:first-of-type)>a>h2::before {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    content: "";
+    width: 0%;
+    height: 1px;
+    background: #7e7e7e;
+    display: block;
+    -webkit-transition: width 0.25s ease;
+    transition: width 0.25s ease; 
 }
 
 .post-preview>a>.post-title {

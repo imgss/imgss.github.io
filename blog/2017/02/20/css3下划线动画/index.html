@@ -41,6 +41,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
 " data-ishome = "false" >
+<img id='small-avatar' style="width:40px;top:10px;position:absolute;left:50%;border-radius:50%;display:none" src="https://imgss.github.io/imgs/avatar.jpg"/>
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
@@ -165,8 +166,8 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <h1 id="下划线动画"><a href="#下划线动画" class="headerlink" title="下划线动画"></a>下划线动画</h1><p>今天看别人的博客的时候，发现鼠标放到上面，会有下划线从中间到两边出现，十分神奇，参考别人的教程之后，终于搞明白是怎么回事，原来是 <code>:before</code>命令在捣鬼。<br>直接看代码：</p>
-<pre><code>position: absolute;
+                <h1 id="下划线动画"><a href="#下划线动画" class="headerlink" title="下划线动画"></a>下划线动画</h1><p>今天看别人的博客的时候，发现鼠标放到上面，会有下划线从中间到两边出现，十分神奇，参考别人的教程之后，终于搞明白是怎么回事，原来是 <code>::before</code>伪元素在捣鬼。<br>直接看代码：</p>
+<pre><code>  position: absolute;
   bottom: 0px;
   left: 0;
   content: &quot;&quot;;
@@ -175,8 +176,8 @@
   background: #7e7e7e;
   display: block;
   -webkit-transition: width 0.25s ease;
-  transition: width 0.25s ease; }
-</code></pre><p>before 的内容为空，将width先设置为0，宽度为1px,当鼠标移动到上面时，通过transition过渡width将width变成100%，形成下划线动画效果。</p>
+  transition: width 0.25s ease;
+</code></pre><p>before 伪元素的内容为空，将width先设置为0，宽度为1px,当鼠标移动到上面时，通过transition过渡width将width变成100%，形成下划线动画效果。</p>
 
                 <hr>
                 
@@ -346,7 +347,21 @@
         if($nav) FastClick.attach($nav);
     })
 </script>
-
+<!--显示小头像-->
+<script>
+$(document).on('scroll',function(){
+    var k=1;
+    return function(){
+        if (document.body.scrollTop > 200 && k){
+            $('#small-avatar').show();
+            k = !k;
+        }
+        if(document.body.scrollTop < 150 && !k){
+            $('#small-avatar').hide();
+            k = !k;
+        }
+}}())
+</script>
 <!-- Google Analytics -->
 
 

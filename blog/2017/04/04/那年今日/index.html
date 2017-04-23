@@ -41,6 +41,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
 " data-ishome = "false" >
+<img id='small-avatar' style="width:40px;top:10px;position:absolute;left:50%;border-radius:50%;display:none" src="https://imgss.github.io/imgs/avatar.jpg"/>
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
@@ -169,7 +170,8 @@
 <p>3月17日的晚上，我跟她表白了，她没有怎么犹豫，答应的比较爽快。但同时提出来一个条件，暂时不能让第三个人知道。</p>
 <p>当时我没有多想，觉得可能是她可能是暂时不想让办公室的人知道。我整个人在刚开始的那几天完全沉浸在一种巨大的喜悦之中。感觉每天都很快乐，就连早上起床都是笑醒的，而每天晚上微信上的晚安会让我睡得很香。</p>
 <p>那段时间我们天天聊微信。周末我们会一起去学车，下班了偶尔一起出来压马路。约定时间之后，我会在离厂区远一点的地方等她，防着被同事撞到。然后一路说说笑笑，牵着手，沿着小路一直走到长江边。那条小路上没什么风景，可我能感受到那种发自内心的快乐，我觉得那时她也是快乐的。</p>
-<p>很快半个月过去了，迎来了清明小长假。我们选择去爬山。</p>
+<p>很快半个月过去了，迎来了清明小长假。我们选择去爬山。我想每个恋爱中的人都会觉得之前觉得无聊的事情跟ta一起做，这件事请就变得意义非凡起来。况且爬山本来也算我喜欢的一项活动。那天的天气很好，公园的花开的很漂亮，四月是百花盛开的季节。</p>
+<p>烂尾。</p>
 
                 <hr>
                 
@@ -339,7 +341,21 @@
         if($nav) FastClick.attach($nav);
     })
 </script>
-
+<!--显示小头像-->
+<script>
+$(document).on('scroll',function(){
+    var k=1;
+    return function(){
+        if (document.body.scrollTop > 200 && k){
+            $('#small-avatar').show();
+            k = !k;
+        }
+        if(document.body.scrollTop < 150 && !k){
+            $('#small-avatar').hide();
+            k = !k;
+        }
+}}())
+</script>
 <!-- Google Analytics -->
 
 

@@ -41,6 +41,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
 " data-ishome = "false" >
+<img id='small-avatar' style="width:40px;top:10px;position:absolute;left:50%;border-radius:50%;display:none" src="https://imgss.github.io/imgs/avatar.jpg"/>
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
@@ -341,7 +342,21 @@
         if($nav) FastClick.attach($nav);
     })
 </script>
-
+<!--显示小头像-->
+<script>
+$(document).on('scroll',function(){
+    var k=1;
+    return function(){
+        if (document.body.scrollTop > 200 && k){
+            $('#small-avatar').show();
+            k = !k;
+        }
+        if(document.body.scrollTop < 150 && !k){
+            $('#small-avatar').hide();
+            k = !k;
+        }
+}}())
+</script>
 <!-- Google Analytics -->
 
 

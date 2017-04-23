@@ -41,6 +41,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="true
 " data-ishome = "false" >
+<img id='small-avatar' style="width:40px;top:10px;position:absolute;left:50%;border-radius:50%;display:none" src="https://imgss.github.io/imgs/avatar.jpg"/>
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
@@ -159,11 +160,11 @@
         
         <div class="post-content-preview">
             <p>
-                下划线动画今天看别人的博客的时候，发现鼠标放到上面，会有下划线从中间到两边出现，十分神奇，参考别人的教程之后，终于搞明白是怎么回事，原来是 :before命令在捣鬼。直接看代码：
-position: absolute;
+                下划线动画今天看别人的博客的时候，发现鼠标放到上面，会有下划线从中间到两边出现，十分神奇，参考别人的教程之后，终于搞明白是怎么回事，原来是 ::before伪元素在捣鬼。直接看代码：
+  position: absolute;
   bottom: 0px;
   left: 0;
-  content: &..
+  conten..
             </p>
         </div>
     </a>
@@ -380,7 +381,21 @@ position: absolute;
         if($nav) FastClick.attach($nav);
     })
 </script>
-
+<!--显示小头像-->
+<script>
+$(document).on('scroll',function(){
+    var k=1;
+    return function(){
+        if (document.body.scrollTop > 200 && k){
+            $('#small-avatar').show();
+            k = !k;
+        }
+        if(document.body.scrollTop < 150 && !k){
+            $('#small-avatar').hide();
+            k = !k;
+        }
+}}())
+</script>
 <!-- Google Analytics -->
 
 
