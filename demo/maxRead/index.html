@@ -23,6 +23,9 @@
                 <td>
                     阅读数
                 </td>
+                <td>
+                    园龄
+                </td>
             </tr>
         </thead>
         <tbody id="jetsContent">
@@ -31,12 +34,17 @@
     </table>
 </body>
 <script>
-$.get('./maxread3.json',function(result){
+$.get('./merge.json',function(result){
     console.log(result.length);
     var body='';
     for(var i=0;i<3000;i++){
         var item=result[i];
-        body+=`<tr><td>${item.user}</td><td><a  href="${item.maxReadUrl}">${item.article}</a></td><td>${item.maxReadNo}</td></tr>`;
+        body+=`<tr>
+                <td>${item.user}</td>
+                <td><a  href="${item.maxReadUrl}">${item.article}</a></td>
+                <td>${item.maxReadNo}</td>
+                <td>${item.age}</td>
+              </tr>`;
     }
     $('tbody').html(body);
     var jets = new Jets({
