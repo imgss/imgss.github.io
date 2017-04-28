@@ -1,4 +1,4 @@
-(function() { //来自网络
+var dooot=(function() { //来自网络
     var tScale = window.devicePixelRatio,
         canvas = document.querySelector('canvas'),
         header = document.querySelector('.page-header'),
@@ -194,4 +194,5 @@
     window.addEventListener('resize', setWidthHeight);
     createDots();
     requestAnimationFrame(animateDots);
+    return {dot:Dot,dots}
 })();
