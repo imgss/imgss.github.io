@@ -3,7 +3,7 @@ var dooot=(function() { //来自网络
         canvas = document.querySelector('canvas'),
         header = document.querySelector('.page-header'),
         dotMaxRad = 5 * tScale,
-        maxCount = 100,
+        maxCount = 20,
         background = '#24292e';
     ctx = canvas.getContext('2d');
     ctx.lineWidth = .2;
@@ -62,24 +62,23 @@ var dooot=(function() { //来自网络
         return createColorStyle(Math.floor(r), Math.floor(g), Math.floor(b));
     }
 
-    function Color(min) { //color构造函数
-        min = min || 0;
+    function Color(min = 0) { //color构造函数
         this.r = colorValue(min);
         this.g = colorValue(min);
         this.b = colorValue(min);
         this.style = createColorStyle(this.r, this.g, this.b);
     }
 
-    function Dot() { //dot 构造函数
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+    function Dot(x,y,color) { //dot 构造函数
+        this.x = x || Math.random() * canvas.width;
+        this.y = y || Math.random() * canvas.height;
 
         this.vx = (-.3 + 0.6 * Math.random()) * tScale; //dot的x速度,手机端要乘以tScale
         this.vy = -.3 + 0.6 * Math.random() * tScale; //dot的y速度
 
         this.radius = Math.random() * dotMaxRad;
 
-        this.color = new Color(200);
+        this.color =color || new Color(200);
         this.connectNum = 0; //记录有几个点与之相连
     }
 
@@ -100,7 +99,7 @@ var dooot=(function() { //来自网络
     }
 
     function moveDots() {
-        for(i = 0; i < dots.num; i++) {
+        for(i = 0; i < dots.array.length; i++) {
 
             var dot = dots.array[i];
 
@@ -117,8 +116,8 @@ var dooot=(function() { //来自网络
     }
 
     function connectDots() { //连结dots，一个交互作用
-        for(i = 0; i < dots.num; i++) {
-            for(j = 0; j < dots.num; j++) {
+        for(i = 0; i < dots.length; i++) {
+            for(j = 0; j < dots.length; j++) {
                 i_dot = dots.array[i];
                 j_dot = dots.array[j];
 
@@ -137,8 +136,8 @@ var dooot=(function() { //来自网络
     }
 
     function connectDot() { //连结dots,自己写的,每个点只能连4个别的点
-        for(i = 0; i < dots.num; i++) {
-            for(j = 0; j < dots.num; j++) {
+        for(i = 0; i < dots.array.length; i++) {
+            for(j = 0; j < dots.array.length; j++) {
                 i_dot = dots.array[i];
                 j_dot = dots.array[j];
                 if(i_dot.connectNum < 3 && j_dot.connectNum < 3 && distance(i_dot, j_dot) < dots.distance) {
@@ -153,7 +152,7 @@ var dooot=(function() { //来自网络
                 }
             }
         }
-        for(i = 0; i < dots.num; i++) {
+        for(i = 0; i < dots.length; i++) {
             dots.array[i].connectNum = 0;
         }
 
@@ -165,7 +164,7 @@ var dooot=(function() { //来自网络
     }
 
     function drawDots() {
-        for(i = 0; i < dots.num; i++) {
+        for(i = 0; i < dots.array.length; i++) {
             var dot = dots.array[i];
             dot.draw();
         }
@@ -182,10 +181,6 @@ var dooot=(function() { //来自网络
 
         requestAnimationFrame(animateDots);
     }
-    header.addEventListener('mousemove', function(e) {
-        mousePosition.x = e.pageX;
-        mousePosition.y = e.pageY;
-    });
 
     header.addEventListener('mouseleave', function(e) {
         mousePosition.x = canvas.width / 2;
@@ -194,5 +189,7 @@ var dooot=(function() { //来自网络
     window.addEventListener('resize', setWidthHeight);
     createDots();
     requestAnimationFrame(animateDots);
+
+    
     return {dot:Dot,dots}
 })();
