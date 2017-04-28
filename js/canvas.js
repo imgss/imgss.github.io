@@ -76,7 +76,7 @@ var dooot=(function() { //来自网络
         this.vx = (-.3 + 0.6 * Math.random()) * tScale; //dot的x速度,手机端要乘以tScale
         this.vy = -.3 + 0.6 * Math.random() * tScale; //dot的y速度
 
-        this.radius = Math.random() * dotMaxRad;
+        this.radius =Math.max(2, Math.random() * dotMaxRad);
 
         this.color =color || new Color(200);
         this.connectNum = 0; //记录有几个点与之相连
