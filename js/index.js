@@ -49,13 +49,7 @@ function getMargin() {
 
 header.addEventListener('click', function(e) {
     let x = e.pageX, y = e.pageY;
-    console.log(x,y);
-    console.log(dooot.dots.array.length);
     if(dooot.dots.array.length<50){
-        for(let i=0; i<3; i++){
-            dooot.dots.array.push(new dooot.dot(x,y,{r:255,g:100,b:100,style:'#f66'}));
-        }
-
-    console.log(dooot.dots.array.length);
+        dooot.dots.array.push(new dooot.dot(x,y,{r:255,g:100,b:100,style:'#f66'}));
     }
 });
