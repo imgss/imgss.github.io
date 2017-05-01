@@ -5,10 +5,20 @@
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
     <script src="/jslib/jquery-3.1.0.min.js"></script>
     <script src="./jet.min.js"></script>
+    <style>
+        th{
+            cursor: pointer;
+        }
+        td:nth-child(2){
+            font-size: 12px;
+            max-width: 200px
+        }
+    </style>
 
 </head>
 <body class="container">
     <h1>博客园抓取的文章3000篇</h1>
+    <p>点击阅读数，园龄，粉丝数可排序</p>
     <form class="form-group row">
     <input type='search' id='search' class="form-control" placeholder="搜一下"/>
     </form>
@@ -24,7 +34,7 @@
                 <th data-field="user">
                     用户名
                 </th>
-                <th data-field="article" data-sortable="true">
+                <th data-field="article">
                     文章名称       
                 </th>
                 <th data-field="maxReadNo" data-sortable="true">
@@ -79,10 +89,10 @@ function sort(field){
 }
 
 $('tr').on('click','th',function(event){
-    console.log(event.target);
-    var field = event.target.dataset.field;
-    console.log(field);
-    genTable(sort(field));
+    var field = event.target.dataset.field,
+        sortable = event.target.dataset.sortable;
+        if(sortable)
+            genTable(sort(field));
 })
 </script>
 </html>
