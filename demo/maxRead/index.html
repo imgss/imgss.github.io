@@ -5,27 +5,45 @@
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
     <script src="/jslib/jquery-3.1.0.min.js"></script>
     <script src="./jet.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+
+    <!-- Latest compiled and minified Locales -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+
 </head>
 <body class="container">
     <h1>博客园抓取的文章3000篇</h1>
     <form class="form-group row">
     <input type='search' id='search' class="form-control" placeholder="搜一下"/>
     </form>
-    <table class='table-striped table .table-hover'>
+    <table class='table-striped table .table-hover' id='table'
+               data-toggle="table"
+               data-classes="table table-no-bordered"
+               data-height="460"
+               data-url="./merge.json"
+               data-sort-name="name"
+               data-sort-order="desc">
         <thead>
             <tr>
-                <td>
+                <th data-field="user">
                     用户名
-                </td>
-                <td>
+                </th>
+                <th data-field="article" data-sortable="true">
                     文章名称       
-                </td>
-                <td>
+                </th>
+                <th data-field="maxReadNo" data-sortable="true">
                     阅读数
-                </td>
-                <td>
+                </th>
+                <th data-field="age" data-sortable="true">
                     园龄
-                </td>
+                </th>
+                <th data-field="follower" data-sortable="true">
+                    粉丝数
+                </th>
             </tr>
         </thead>
         <tbody id="jetsContent">
@@ -34,6 +52,7 @@
     </table>
 </body>
 <script>
+/*
 $.get('./merge.json',function(result){
     console.log(result.length);
     var body='';
@@ -44,6 +63,7 @@ $.get('./merge.json',function(result){
                 <td><a  href="${item.maxReadUrl}">${item.article}</a></td>
                 <td>${item.maxReadNo}</td>
                 <td>${item.age}</td>
+                <td>${item.follower}</td>
               </tr>`;
     }
     $('tbody').html(body);
@@ -54,5 +74,38 @@ $.get('./merge.json',function(result){
     });
 
 });
+*/
+// $('#table').bootstrapTable({
+//     url: './merge.json',
+//     columns: [{
+//         field: 'user',
+//         title: '用户名'
+//     }, {
+//         field: 'age',
+//         title: '园龄'
+//     }, {
+//         field: 'follower',
+//         title: '粉丝数'
+//     },{
+//         field: 'maxReadNo',
+//         title: '最大阅读量'
+//     },{
+//         field: 'article',
+//         title: '文章'
+//     },],
+
+
+// });
+var ask = setInterval(function(){
+    var len = $('#table tr').length;
+      if(len >1000){
+          var jets = new Jets({
+            searchTag: '#search',
+            contentTag: '#jetsContent',
+            columns: [1]
+          });
+          clearInterval(ask);
+    }
+},500);
 </script>
 </html>
