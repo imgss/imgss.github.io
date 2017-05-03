@@ -3,55 +3,63 @@
     <title>博客园阅读量</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/gh-fork-ribbon.css">
     <script src="/jslib/jquery-3.1.0.min.js"></script>
     <script src="./jet.min.js"></script>
     <style>
+        table{
+            font-size:12px;
+        }
+        th:first-child,
+        td:first-child{
+            max-width: 80px!important;
+        }
         th{
             cursor: pointer;
         }
         td:nth-child(2){
-            font-size: 12px;
             max-width: 200px
         }
     </style>
 
 </head>
 <body class="container">
-    <h1>博客园抓取的文章3000篇</h1>
+    
+    <h1>博客园随笔</h1>
     <p>点击阅读数，园龄，粉丝数可排序</p>
+    <a class="github-fork-ribbon" href="https://github.com/imgss/readCounter" title="Fork me on GitHub">Fork me on GitHub</a>
     <form class="form-group row">
-    <input type='search' id='search' class="form-control" placeholder="搜一下"/>
+    <input type='search' id='search' class="form-control" placeholder="搜一下文章"/>
     </form>
-    <table class='table-striped table .table-hover' id='table'
-               data-toggle="table"
-               data-classes="table table-no-bordered"
-               data-height="460"
-               data-url="./merge.json"
-               data-sort-name="name"
-               data-sort-order="desc">
-        <thead>
-            <tr>
-                <th data-field="user">
-                    用户名
-                </th>
-                <th data-field="article">
-                    文章名称       
-                </th>
-                <th data-field="maxReadNo" data-sortable="true">
-                    阅读数
-                </th>
-                <th data-field="age" data-sortable="true">
-                    园龄
-                </th>
-                <th data-field="follower" data-sortable="true">
-                    粉丝数
-                </th>
-            </tr>
-        </thead>
-        <tbody id="jetsContent">
+    <div class='table-responsive'>
+        <table class='table-striped table .table-hover' id='table'>
+            <thead>
+                <tr>
+                    <th data-field="user">
+                        用户名
+                    </th>
+                    <th data-field="articleNo" data-sortable="true">
+                        随笔数       
+                    </th>
+                    <th data-field="article" >
+                        最受欢迎的文章       
+                    </th>
+                    <th data-field="maxReadNo" data-sortable="true">
+                        阅读数
+                    </th>
+                    <th data-field="age" data-sortable="true">
+                        园龄
+                    </th>
+                    <th data-field="follower" data-sortable="true">
+                        粉丝数
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="jetsContent">
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </body>
 <script>
 var userData;
@@ -63,8 +71,9 @@ function genTable(data){
         var item=data[i];
         body+=`<tr>
                 <td>${item.user || '-'}</td>
-                <td><a  href="${item.maxReadUrl}">${item.article || '-'}</a></td>
-                <td>${item.maxReadNo}</td>
+                <td>${item.articleNo || '-'}</td>
+                <td><a href='${item.maxReadUrl || '/'}'>${item.article? item.article.slice(0,10) : '-'}</a></td>
+                <td>${item.maxReadNo || '-'}</td>
                 <td>${item.age || '-'}</td>
                 <td>${item.follower || '-'}</td>
               </tr>`;
@@ -73,19 +82,33 @@ function genTable(data){
     var jets = new Jets({
         searchTag: '#search',
         contentTag: '#jetsContent',
-        columns: [1]
+        columns: [2]
     });
 }
 
-$.get('./merge.json',function(result){
+$.get('./mergeAll.json',function(result){
     userData = result;
     genTable(result);
 });
 
 function sort(field){
+    if(field == 'age'){
+        return  userData.sort(function(a,b){
+            var ageA = a.age,
+                ageB = b.age;
+            return year2mon(ageB) - year2mon(ageA);
+    })
+}
   return  userData.sort(function(a,b){
         return b[field]-a[field];
     })
+}
+function year2mon(age){
+    var re = /((\d+)年)?((\d+)个月)?/;
+    var arr=re.exec(age);
+    year = arr[2] ? Number(arr[2]) : 0;
+    month = arr[4] ? Number(arr[4]) : 0;
+    return 12*year + month;
 }
 
 $('tr').on('click','th',function(event){
