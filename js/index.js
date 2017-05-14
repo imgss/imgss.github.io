@@ -4,12 +4,9 @@ var div = document.querySelector('section .row')
 window.onload = function() {
     var spanArr = document.querySelectorAll('.row span');
     spanArr = Array.prototype.slice.call(spanArr);
-
     var h1 = document.querySelector('.wrapper h1');
     h1.className = 'animated bounce';
-    //h1.addEventListener('animationend', function() {
-    //document.querySelector('.project-tagline').className = 'project-tagline animated swing infinite';
-    //)}
+
     spanArr.forEach(function(span, i) {
         setTimeout(function() {
             span.className = 'animated fadeIn';

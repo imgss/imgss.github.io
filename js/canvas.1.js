@@ -70,15 +70,16 @@ var dooot=(function() {
     }
 
     function Dot(x,y,color) { //dot 构造函数
+        console.log(x,y)
         this.x = x || Math.random() * canvas.width;
         this.y = y || Math.random() * canvas.height;
 
         this.vx = (-.3 + 0.6 * Math.random()) * tScale; //dot的x速度,手机端要乘以tScale
         this.vy = -.3 + 0.6 * Math.random() * tScale; //dot的y速度
 
-        this.radius =Math.max(2, Math.random() * dotMaxRad);
+        this.radius = Math.max(2, Math.random() * dotMaxRad);
 
-        this.color =color || new Color(200);
+        this.color = color || new Color(200);
         this.connectNum = 0; //记录有几个点与之相连
     }
 
