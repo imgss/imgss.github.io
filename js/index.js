@@ -47,6 +47,6 @@ function getMargin() {
 header.addEventListener('click', function(e) {
     let x = e.pageX, y = e.pageY;
     if(dooot.dots.array.length<50){
-        dooot.dots.array.push(new dooot.dot(x,y,{r:255,g:100,b:100,style:'#f66'}));
+        dooot.dots.array.push(new dooot.dot(x*window.devicePixelRatio,y*window.devicePixelRatio,{r:255,g:100,b:100,style:'#f66'}));
     }
 });
