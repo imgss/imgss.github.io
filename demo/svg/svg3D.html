@@ -34,8 +34,8 @@
     <script>
         var paper = document.querySelector("svg");//svg
             tags = document.querySelectorAll('svg text');
-            FONTSIZE = 20;
-            RADIUS =300,
+            RADIUS =200,
+            FONTSIZE = RADIUS*0.1,
             fallLength = 600,//焦距
             tagArr=[],
             angleX = Math.PI/300,
@@ -43,6 +43,7 @@
             CX = paper.getAttribute('width')/2,//球心坐标
             CY = paper.getAttribute('height')/2;//球心坐标
 
+        
         function Tag(ele , x , y , z){
             this.ele = ele;
             this.x = x;
@@ -76,10 +77,10 @@
 		}
         function animate(){
 			setInterval(function(){
-                angleY += Math.PI/300;
-                angleY = angleX>Math.PI? 0 : angleX
+                // angleY += Math.PI/300;
+                // angleY = angleX>Math.PI? 0 : angleX
 				rotateX();
-				//rotateY();
+				rotateY();
 			} , 17);
 		}
         function rotateX(){
@@ -107,6 +108,14 @@
                 this.ele.setAttribute('font-size', FONTSIZE * (fallLength/(fallLength-this.z)));
 			})
 		}
+        paper.addEventListener("mousemove" , function(event){
+                var x = event.clientX - CX;
+                var y = event.clientY - CY;
+                // angleY = -x* (Math.sqrt(Math.pow(x , 2) + Math.pow(y , 2)) > RADIUS/4 ? 0.0002 : 0.0001);
+                // angleX = -y* (Math.sqrt(Math.pow(x , 2) + Math.pow(y , 2)) > RADIUS/4 ? 0.0002 : 0.0001);
+                angleY = x*0.0001>0 ? Math.min(RADIUS*0.00002,x*0.0001) : Math.max(-RADIUS*0.00002,x*0.0001);
+                angleX = y*0.0001>0 ? Math.min(RADIUS*0.00002,y*0.0001) : Math.max(-RADIUS*0.00002,y*0.0001); 
+        });
         init();
         animate();
 
