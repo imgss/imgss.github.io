@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>svg3D标签云</title>
+</head>
+<body>
+    <svg width='700' height='700'>
+        <a href="https://www.baidu.com">
+            <text x='10' y='12'>1222</text>
+        </a>
+        <text x='100' y='120'>weed</text>
+        <text x='120' y='152'>sdcc</text>
+        <text x='160' y='222'>dfdf</text>
+        <text x='60' y='92'>vbbb</text>
+        <text x='160' y='300'>evvv</text>
+        <text x='290' y='400'>hhhh</text>
+        <text x='633' y='300'>wrgg</text>
+        <text x='400' y='500'>ohhh</text>
+        <text x='320' y='400'>qvbn</text>
+        <text x='480' y='200'>rvbj</text>
+        <text x='303' y='120'>eghj</text>
+        <text x='100' y='120'>weed</text>
+        <text x='120' y='152'>sdcc</text>
+        <text x='160' y='222'>dfdf</text>
+        <text x='60' y='92'>vbbb</text>
+        <text x='160' y='300'>evvv</text>
+        <text x='290' y='400'>hhhh</text>
+        <text x='633' y='300'>wrgg</text>
+        <text x='400' y='500'>ohhh</text>
+        <text x='320' y='400'>qvbn</text>
+        <text x='480' y='200'>rvbj</text>
+        <text x='303' y='120'>eghj</text>
+    </svg>
+    <script>
+        var paper = document.querySelector("svg");//svg
+            tags = document.querySelectorAll('svg text');
+            FONTSIZE = 20;
+            RADIUS =300,
+            fallLength = 600,//焦距
+            tagArr=[],
+            angleX = Math.PI/300,
+            angleY = Math.PI/300,
+            CX = paper.getAttribute('width')/2,//球心坐标
+            CY = paper.getAttribute('height')/2;//球心坐标
+
+        function Tag(ele , x , y , z){
+            this.ele = ele;
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
+        function init(){
+            var len = tags.length
+            for(var i=0;i<len;i++){
+                var a , b;
+                var k = -1+(2*(i+1)-1)/len;
+                var a = Math.acos(k);
+                var b = a*Math.sqrt(len*Math.PI);
+                // var a = Math.random()*2*Math.PI;
+                // var b = Math.random()*2*Math.PI;
+                var x =CX +  RADIUS * Math.sin(a) * Math.cos(b);
+                var y =CY +  RADIUS * Math.sin(a) * Math.sin(b); 
+                var z = RADIUS * Math.cos(a);
+                var t = new Tag(tags[i] , x , y , z);
+                tags[i].setAttribute('x',x);
+                tags[i].setAttribute('y',y);
+                tags[i].setAttribute('font-size', FONTSIZE * (fallLength/(fallLength-this.z)));
+                tags[i].setAttribute('fill', "rgb("+parseInt(Math.random()*255)+","+parseInt(Math.random()*255)+","+parseInt(Math.random()*255)+")")
+                tagArr.push(t);
+            }
+        }
+        Array.prototype.forEach = function(callback){
+			for(var i=0;i<this.length;i++){
+				callback.call(this[i]);
+			}
+		}
+        function animate(){
+			setInterval(function(){
+                angleY += Math.PI/300;
+                angleY = angleX>Math.PI? 0 : angleX
+				rotateX();
+				//rotateY();
+			} , 17);
+		}
+        function rotateX(){
+			var cos = Math.cos(angleX);
+			var sin = Math.sin(angleX);
+			tagArr.forEach(function(){
+				var y1 = (this.y-CY) * cos - this.z * sin  +CY;
+				var z1 = this.z * cos + (this.y-CY) * sin;
+				this.y = y1;
+				this.z = z1;
+                this.ele.setAttribute('y',this.y)
+                this.ele.setAttribute('font-size', FONTSIZE * (fallLength/(fallLength-this.z)));
+			})
+			
+		}
+        function rotateY(){
+			var cos = Math.cos(angleY);
+			var sin = Math.sin(angleY);
+			tagArr.forEach(function(){
+				var x1 = (this.x-CX) * cos - this.z * sin +CX;
+				var z1 = this.z * cos + (this.x-CX) * sin;
+				this.x = x1;
+				this.z = z1;
+                this.ele.setAttribute('x',this.x)
+                this.ele.setAttribute('font-size', FONTSIZE * (fallLength/(fallLength-this.z)));
+			})
+		}
+        init();
+        animate();
+
+    </script>
+</body>
+</html>
