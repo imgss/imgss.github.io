@@ -102,6 +102,12 @@ ul a:hover ::before {
     margin-left: 0;
     margin-right: 0;
 }
+.account a{
+    text-decoration: none;
+}
+.account a:hover{
+    color: #f9bc2d;
+}
 
 .up-down {
     width: 100%;
