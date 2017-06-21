@@ -2,36 +2,97 @@
 <html>
 <head>
     <title>svg3D标签云</title>
+    <script src="http://cdn.bootcss.com/vue/2.2.0/vue.min.js"></script>
 </head>
 <body>
-    <svg width='700' height='700'>
-        <a href="https://www.baidu.com">
-            <text x='10' y='12'>1222</text>
-        </a>
-        <text x='100' y='120'>weed</text>
-        <text x='120' y='152'>sdcc</text>
-        <text x='160' y='222'>dfdf</text>
-        <text x='60' y='92'>vbbb</text>
-        <text x='160' y='300'>evvv</text>
-        <text x='290' y='400'>hhhh</text>
-        <text x='633' y='300'>wrgg</text>
-        <text x='400' y='500'>ohhh</text>
-        <text x='320' y='400'>qvbn</text>
-        <text x='480' y='200'>rvbj</text>
-        <text x='303' y='120'>eghj</text>
-        <text x='100' y='120'>weed</text>
-        <text x='120' y='152'>sdcc</text>
-        <text x='160' y='222'>dfdf</text>
-        <text x='60' y='92'>vbbb</text>
-        <text x='160' y='300'>evvv</text>
-        <text x='290' y='400'>hhhh</text>
-        <text x='633' y='300'>wrgg</text>
-        <text x='400' y='500'>ohhh</text>
-        <text x='320' y='400'>qvbn</text>
-        <text x='480' y='200'>rvbj</text>
-        <text x='303' y='120'>eghj</text>
-    </svg>
+    <div id='app'>
+        <svg :width='width' :height='height'>
+            <a :href="tag.href" v-for='tag in tags'>
+                <text :x='tag.y' :y='tag.x' :font-size='20 * (600/(600-tag.z))'>{{tag.text}}</text>
+            </a>
+        </svg>
+    </div>
     <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                width:700,
+                height:700,
+                tagsNum:20,
+                tags: [{
+                    text:'js',
+                    href:'/js',
+                    x:20,
+                    y:20
+                },{
+                    text:'css',
+                    href:'/css',
+                    x:40,
+                    y:40
+                },{
+                    text:'html',
+                    href:'/html',
+                    x:60,
+                    y:60
+                }]
+            },
+            computed:{
+                CX(){
+                    return this.width/2;
+                },
+                CY(){
+                    return this.height/2;
+                }
+            },
+            created(){
+                let tags=[],RADIUS= 200;
+                console.log(this.tagsNum)
+                for(let i=0;i<this.tagsNum;i++){
+                    let tag={};
+                    let k = -1+(2*(i+1)-1)/this.tagsNum;
+                    let a = Math.acos(k);
+                    let b = a*Math.sqrt(this.tagsNum*Math.PI)
+                    tag.text = i + 'tag';
+                    tag.x = this.CX +  RADIUS * Math.sin(a) * Math.cos(b);
+                    tag.y = this.CY +  RADIUS * Math.sin(a) * Math.sin(b); 
+                    tag.z = RADIUS * Math.cos(a);
+                    tags.push(tag)
+                }
+                console.log(tags)
+                this.tags = tags;
+            },
+            mounted(){
+                var angle=0;
+                setInterval(()=>{
+                    angle = Math.PI/300;
+                    this.rotateX(angle);
+                },17)
+            },
+            methods:{
+                rotateX(angleX){
+                        var cos = Math.cos(angleX);
+                        var sin = Math.sin(angleX);
+                        for(let tag of this.tags){
+                            var y1 = (tag.y- this.CY) * cos - tag.z * sin  + this.CY;
+                            var z1 = tag.z * cos + (tag.y- this.CY) * sin;
+                            tag.y = y1;
+                            tag.z = z1;
+                        } 
+                },
+                rotateY(angleY){
+                        var cos = Math.cos(angleY);
+                        var sin = Math.sin(angleY);
+                        for(let tag of this.tags){
+                            var x1 = (tag.x-this.CX) * cos - tag.z * sin +CX;
+				            var z1 = tag.z * cos + (tag.x-this.CX) * sin;
+                            tag.x = x1;
+                            tag.z = z1;
+                        } 
+                    }
+                }
+            })
+
+/*
         var paper = document.querySelector("svg");//svg
             tags = document.querySelectorAll('svg text');
             FONTSIZE = 20;
@@ -68,7 +129,6 @@
         function init(){
             var len = tags.length
             for(var i=0;i<len;i++){
-                var a , b;
                 var k = -1+(2*(i+1)-1)/len;
                 var a = Math.acos(k);
                 var b = a*Math.sqrt(len*Math.PI);
@@ -125,7 +185,7 @@
 		}
         init();
         animate();
-
+*/
     </script>
 </body>
 </html>
