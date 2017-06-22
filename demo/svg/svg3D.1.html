@@ -5,10 +5,10 @@
     <script src="http://cdn.bootcss.com/vue/2.2.0/vue.min.js"></script>
 </head>
 <body>
-    <div id='app'>
-        <svg :width='width' :height='height'>
+    <div id='app' >
+        <svg :width='width' :height='height' @mousemove='listener($event)'>
             <a :href="tag.href" v-for='tag in tags'>
-                <text :x='tag.y' :y='tag.x' :font-size='20 * (600/(600-tag.z))'>{{tag.text}}</text>
+                <text :x='tag.y' :y='tag.x' :font-size='20 * (600/(600-tag.z))' :fill-opacity='((400+tag.z)/600)'>{{tag.text}}</text>
             </a>
         </svg>
     </div>
@@ -19,6 +19,9 @@
                 width:700,
                 height:700,
                 tagsNum:20,
+                RADIUS:200,
+                speedX:Math.PI/360,
+                speedY:Math.PI/360,
                 tags: [{
                     text:'js',
                     href:'/js',
@@ -45,7 +48,7 @@
                 }
             },
             created(){
-                let tags=[],RADIUS= 200;
+                let tags=[];
                 console.log(this.tagsNum)
                 for(let i=0;i<this.tagsNum;i++){
                     let tag={};
@@ -53,19 +56,18 @@
                     let a = Math.acos(k);
                     let b = a*Math.sqrt(this.tagsNum*Math.PI)
                     tag.text = i + 'tag';
-                    tag.x = this.CX +  RADIUS * Math.sin(a) * Math.cos(b);
-                    tag.y = this.CY +  RADIUS * Math.sin(a) * Math.sin(b); 
-                    tag.z = RADIUS * Math.cos(a);
+                    tag.x = this.CX +  this.RADIUS * Math.sin(a) * Math.cos(b);
+                    tag.y = this.CY +  this.RADIUS * Math.sin(a) * Math.sin(b); 
+                    tag.z = this.RADIUS * Math.cos(a);
+                    tag.href = 'https://imgss.github.io'
                     tags.push(tag)
                 }
-                console.log(tags)
                 this.tags = tags;
             },
             mounted(){
-                var angle=0;
                 setInterval(()=>{
-                    angle = Math.PI/300;
-                    this.rotateX(angle);
+                    this.rotateX(this.speedX);
+                    this.rotateY(this.speedY);
                 },17)
             },
             methods:{
@@ -83,12 +85,18 @@
                         var cos = Math.cos(angleY);
                         var sin = Math.sin(angleY);
                         for(let tag of this.tags){
-                            var x1 = (tag.x-this.CX) * cos - tag.z * sin +CX;
+                            var x1 = (tag.x-this.CX) * cos - tag.z * sin + this.CX;
 				            var z1 = tag.z * cos + (tag.x-this.CX) * sin;
                             tag.x = x1;
                             tag.z = z1;
                         } 
-                    }
+                    },
+                listener(event){
+                    var x = event.clientX - this.CX;
+                    var y = event.clientY - this.CY;
+                    this.speedX = x*0.0001>0 ? Math.min(this.RADIUS*0.00002,x*0.0001) : Math.max(-this.RADIUS*0.00002,x*0.0001);
+                    this.speedY = y*0.0001>0 ? Math.min(this.RADIUS*0.00002,y*0.0001) : Math.max(-this.RADIUS*0.00002,y*0.0001); 
+                }
                 }
             })
 
