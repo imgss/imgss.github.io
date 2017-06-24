@@ -8,7 +8,7 @@
     <div id='app' >
         <svg :width='width' :height='height' @mousemove='listener($event)'>
             <a :href="tag.href" v-for='tag in tags'>
-                <text :x='tag.y' :y='tag.x' :font-size='20 * (600/(600-tag.z))' :fill-opacity='((400+tag.z)/600)'>{{tag.text}}</text>
+                <text :x='tag.x' :y='tag.y' :font-size='20 * (600/(600-tag.z))' :fill-opacity='((400+tag.z)/600)'>{{tag.text}}</text>
             </a>
         </svg>
     </div>
@@ -22,22 +22,7 @@
                 RADIUS:200,
                 speedX:Math.PI/360,
                 speedY:Math.PI/360,
-                tags: [{
-                    text:'js',
-                    href:'/js',
-                    x:20,
-                    y:20
-                },{
-                    text:'css',
-                    href:'/css',
-                    x:40,
-                    y:40
-                },{
-                    text:'html',
-                    href:'/html',
-                    x:60,
-                    y:60
-                }]
+                tags: []
             },
             computed:{
                 CX(){
@@ -47,14 +32,13 @@
                     return this.height/2;
                 }
             },
-            created(){
+            created(){//初始化标签位置
                 let tags=[];
-                console.log(this.tagsNum)
-                for(let i=0;i<this.tagsNum;i++){
-                    let tag={};
-                    let k = -1+(2*(i+1)-1)/this.tagsNum;
+                for(let i = 0; i < this.tagsNum; i++){
+                    let tag = {};
+                    let k = -1 + (2 * (i + 1) - 1) / this.tagsNum;
                     let a = Math.acos(k);
-                    let b = a*Math.sqrt(this.tagsNum*Math.PI)
+                    let b = a * Math.sqrt(this.tagsNum * Math.PI)
                     tag.text = i + 'tag';
                     tag.x = this.CX +  this.RADIUS * Math.sin(a) * Math.cos(b);
                     tag.y = this.CY +  this.RADIUS * Math.sin(a) * Math.sin(b); 
@@ -64,136 +48,41 @@
                 }
                 this.tags = tags;
             },
-            mounted(){
+            mounted(){//使球开始旋转
                 setInterval(()=>{
                     this.rotateX(this.speedX);
                     this.rotateY(this.speedY);
-                },17)
+                }, 17)
             },
             methods:{
-                rotateX(angleX){
-                        var cos = Math.cos(angleX);
-                        var sin = Math.sin(angleX);
-                        for(let tag of this.tags){
-                            var y1 = (tag.y- this.CY) * cos - tag.z * sin  + this.CY;
-                            var z1 = tag.z * cos + (tag.y- this.CY) * sin;
-                            tag.y = y1;
-                            tag.z = z1;
-                        } 
+                rotateX(speedX){
+                    var cos = Math.cos(speedX);
+                    var sin = Math.sin(speedX);
+                    for(let tag of this.tags){
+                        var y1 = (tag.y- this.CY) * cos - tag.z * sin  + this.CY;
+                        var z1 = tag.z * cos + (tag.y- this.CY) * sin;
+                        tag.y = y1;
+                        tag.z = z1;
+                    } 
                 },
-                rotateY(angleY){
-                        var cos = Math.cos(angleY);
-                        var sin = Math.sin(angleY);
-                        for(let tag of this.tags){
-                            var x1 = (tag.x-this.CX) * cos - tag.z * sin + this.CX;
-				            var z1 = tag.z * cos + (tag.x-this.CX) * sin;
-                            tag.x = x1;
-                            tag.z = z1;
-                        } 
-                    },
-                listener(event){
+                rotateY(speedY){
+                    var cos = Math.cos(speedY);
+                    var sin = Math.sin(speedY);
+                    for(let tag of this.tags){
+                        var x1 = (tag.x - this.CX) * cos - tag.z * sin + this.CX;
+                        var z1 = tag.z * cos + (tag.x - this.CX) * sin;
+                        tag.x = x1;
+                        tag.z = z1;
+                    } 
+                },
+                listener(event){//响应鼠标移动
                     var x = event.clientX - this.CX;
                     var y = event.clientY - this.CY;
-                    this.speedX = x*0.0001>0 ? Math.min(this.RADIUS*0.00002,x*0.0001) : Math.max(-this.RADIUS*0.00002,x*0.0001);
-                    this.speedY = y*0.0001>0 ? Math.min(this.RADIUS*0.00002,y*0.0001) : Math.max(-this.RADIUS*0.00002,y*0.0001); 
+                    this.speedX = x*0.0001>0 ? Math.min(this.RADIUS*0.00002, x*0.0001) : Math.max(-this.RADIUS*0.00002, x*0.0001);
+                    this.speedY = y*0.0001>0 ? Math.min(this.RADIUS*0.00002, y*0.0001) : Math.max(-this.RADIUS*0.00002, y*0.0001); 
                 }
                 }
             })
-
-/*
-        var paper = document.querySelector("svg");//svg
-            tags = document.querySelectorAll('svg text');
-            FONTSIZE = 20;
-            RADIUS =300,
-            fallLength = 600,//焦距
-            tagArr=[],
-            angleX = Math.PI/300,
-            angleY = Math.PI/300,
-            CX = paper.getAttribute('width')/2,//球心坐标
-            CY = paper.getAttribute('height')/2;//球心坐标
-        
-        function Ball(x,y,r){
-            this.cx = x;
-            this.cy = y;
-            this.r = r;
-            this.el = el;
-        }
-        Ball.prototype.rotateX = function(){
-
-        }
-        Ball.prototype.rotateY = function(){
-
-        }
-        Ball.prototype.init = function(){
-
-        }
-
-        function Tag(ele , x , y , z){
-            this.ele = ele;
-            this.x = x;
-            this.y = y;
-            this.z = z;
-        }
-        function init(){
-            var len = tags.length
-            for(var i=0;i<len;i++){
-                var k = -1+(2*(i+1)-1)/len;
-                var a = Math.acos(k);
-                var b = a*Math.sqrt(len*Math.PI);
-                // var a = Math.random()*2*Math.PI;
-                // var b = Math.random()*2*Math.PI;
-                var x =CX +  RADIUS * Math.sin(a) * Math.cos(b);
-                var y =CY +  RADIUS * Math.sin(a) * Math.sin(b); 
-                var z = RADIUS * Math.cos(a);
-                var t = new Tag(tags[i] , x , y , z);
-                tags[i].setAttribute('x',x);
-                tags[i].setAttribute('y',y);
-                tags[i].setAttribute('font-size', FONTSIZE * (fallLength/(fallLength-this.z)));
-                tags[i].setAttribute('fill', "rgb("+parseInt(Math.random()*255)+","+parseInt(Math.random()*255)+","+parseInt(Math.random()*255)+")")
-                tagArr.push(t);
-            }
-        }
-        Array.prototype.forEach = function(callback){
-			for(var i=0;i<this.length;i++){
-				callback.call(this[i]);
-			}
-		}
-        function animate(){
-			setInterval(function(){
-                angleY += Math.PI/300;
-                angleY = angleX>Math.PI? 0 : angleX
-				rotateX();
-				//rotateY();
-			} , 17);
-		}
-        function rotateX(){
-			var cos = Math.cos(angleX);
-			var sin = Math.sin(angleX);
-			tagArr.forEach(function(){
-				var y1 = (this.y-CY) * cos - this.z * sin  +CY;
-				var z1 = this.z * cos + (this.y-CY) * sin;
-				this.y = y1;
-				this.z = z1;
-                this.ele.setAttribute('y',this.y)
-                this.ele.setAttribute('font-size', FONTSIZE * (fallLength/(fallLength-this.z)));
-			})
-			
-		}
-        function rotateY(){
-			var cos = Math.cos(angleY);
-			var sin = Math.sin(angleY);
-			tagArr.forEach(function(){
-				var x1 = (this.x-CX) * cos - this.z * sin +CX;
-				var z1 = this.z * cos + (this.x-CX) * sin;
-				this.x = x1;
-				this.z = z1;
-                this.ele.setAttribute('x',this.x)
-                this.ele.setAttribute('font-size', FONTSIZE * (fallLength/(fallLength-this.z)));
-			})
-		}
-        init();
-        animate();
-*/
     </script>
 </body>
 </html>
