@@ -15,10 +15,17 @@
         ctx.clearRect(0,0,500,500);
         ctx.beginPath();
         ctx.arc(250, 250, 200, 0, Math.PI * 2, true); // Outer circle
-        ctx.stroke()
-        ctx.clip();
-        ctx.arc(bigCX, bigCY, 500,0,Math.PI * 2);  
+        ctx.strokeStyle='#000'; 
         ctx.stroke();
+        ctx.clip();
+        ctx.closePath();
+        ctx.beginPath();
+        ctx.moveTo(bigCX, bigCY);  
+        ctx.lineTo(500-bigCX, 500-bigCY);  
+        ctx.strokeStyle='#f66'; 
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.closePath();
         drawLine();
         drawLine(Math.PI/12,10,-1);
         function drawLine(start,len,text){
@@ -26,6 +33,7 @@
           len = len || 30;
           text = text || 1;
           var hourAngle = Math.PI*2 / 12;
+          ctx.strokeStyle='#000'; 
           for(var i=0;i<12;i++){
             var startX = bigCX + (480-len)*Math.cos(hourAngle*i + start);
             var startY = bigCY + (480-len)*Math.sin(hourAngle*i + start);
