@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <canvas width='500' height='500'></canvas>
+    <script>
+      var canvas = document.querySelector('canvas');
+      var ctx = canvas.getContext('2d');
+      var bigCX = 680,bigCY = 250;
+      var dist = 680-250,a = 0;
+      function clock(){
+        bigCX = 250 + 330*Math.cos(a)
+        bigCY = 250 + 330*Math.sin(a)
+        ctx.clearRect(0,0,500,500);
+        ctx.beginPath();
+        ctx.arc(250, 250, 200, 0, Math.PI * 2, true); // Outer circle
+        ctx.stroke()
+        ctx.clip();
+        ctx.arc(bigCX, bigCY, 500,0,Math.PI * 2);  
+        ctx.stroke();
+        drawLine();
+        drawLine(Math.PI/12,10,-1);
+        function drawLine(start,len,text){
+          start = start || 0;
+          len = len || 30;
+          text = text || 1;
+          var hourAngle = Math.PI*2 / 12;
+          for(var i=0;i<12;i++){
+            var startX = bigCX + (480-len)*Math.cos(hourAngle*i + start);
+            var startY = bigCY + (480-len)*Math.sin(hourAngle*i + start);
+            var endX = bigCX + 480*Math.cos(hourAngle*i + start);
+            var endY = bigCY + 480*Math.sin(hourAngle*i + start);
+            if(text  === 1){
+              ctx.font = '40px sans-serif';
+              ctx.fillText(i+3, startX, startY);
+            }
+            ctx.beginPath();
+            ctx.lineCap="round";
+            ctx.moveTo(startX,startY);
+            ctx.lineTo(endX,endY);
+            ctx.lineWidth = 6;
+            ctx.stroke();
+            ctx.closePath();
+          }
+        }
+      }
+      setInterval(function(){a += Math.PI/360; clock(a);},30)
+    </script>
+  </body>
+</html>
