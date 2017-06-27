@@ -7,15 +7,22 @@
     <script>
       var canvas = document.querySelector('canvas');
       var ctx = canvas.getContext('2d');
-      var bigCX = 680,bigCY = 250;
-      var dist = 680-250,a = 0;
+      var bigCX = 650, bigCY = 250, bigR = 430;
+      var dist = 330, a = 0;
+      ctx.font = '40px sans-serif'; 
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      var radgrad = ctx.createRadialGradient(250, 250, 190, 250, 250, 200);
+      radgrad.addColorStop(0, '#fff');
+      radgrad.addColorStop(1, '#333');
       function clock(){
-        bigCX = 250 + 330*Math.cos(a)
-        bigCY = 250 + 330*Math.sin(a)
+        bigCX = 250 + dist*Math.cos(a)
+        bigCY = 250 + dist*Math.sin(a)
         ctx.clearRect(0,0,500,500);
         ctx.beginPath();
-        ctx.arc(250, 250, 200, 0, Math.PI * 2, true); // Outer circle
-        ctx.strokeStyle='#000'; 
+        ctx.arc(250, 250, 200, 0, Math.PI * 2, true);
+        ctx.strokeStyle = radgrad; 
+        ctx.lineWidth = 20;
         ctx.stroke();
         ctx.clip();
         ctx.closePath();
@@ -27,33 +34,37 @@
         ctx.stroke();
         ctx.closePath();
         drawLine();
-        drawLine(Math.PI/12,10,-1);
-        function drawLine(start,len,text){
-          start = start || 0;
-          len = len || 30;
-          text = text || 1;
-          var hourAngle = Math.PI*2 / 12;
-          ctx.strokeStyle='#000'; 
-          for(var i=0;i<12;i++){
-            var startX = bigCX + (480-len)*Math.cos(hourAngle*i + start);
-            var startY = bigCY + (480-len)*Math.sin(hourAngle*i + start);
-            var endX = bigCX + 480*Math.cos(hourAngle*i + start);
-            var endY = bigCY + 480*Math.sin(hourAngle*i + start);
-            if(text  === 1){
-              ctx.font = '40px sans-serif';
-              ctx.fillText(i+3, startX, startY);
-            }
-            ctx.beginPath();
-            ctx.lineCap="round";
-            ctx.moveTo(startX,startY);
-            ctx.lineTo(endX,endY);
-            ctx.lineWidth = 6;
-            ctx.stroke();
-            ctx.closePath();
+        drawLine(Math.PI/12, 10, -1);
+        drawLine(0, 2, -1, 72);
+      }
+      function drawLine(start, len, text, count){
+        start = start || 0;
+        len = len || 30;
+        text = text || 1;
+        count = count || 12;
+        var angle = Math.PI*2 / count;
+        ctx.strokeStyle='#000'; 
+        for(var i=0; i<count; i++){
+          var startX = bigCX + (bigR-len)*Math.cos(angle*i + start);
+          var startY = bigCY + (bigR-len)*Math.sin(angle*i + start);
+          var endX = bigCX + bigR*Math.cos(angle*i + start);
+          var endY = bigCY + bigR*Math.sin(angle*i + start);
+          if(text  === 1){
+            var startTextX = bigCX + (bigR-len-30)*Math.cos(angle*i + start);
+            var startTextY = bigCY + (bigR-len-30)*Math.sin(angle*i + start);
+            ctx.fillText(i+1, startTextX, startTextY);
           }
+          ctx.beginPath();
+          ctx.lineCap="round";
+          ctx.moveTo(startX,startY);
+          ctx.lineTo(endX,endY);
+          ctx.lineWidth = 4;
+          ctx.stroke();
+          ctx.closePath();
         }
       }
-      setInterval(function(){a += Math.PI/360; clock(a);},30)
+      function animate(){a += Math.PI/360; clock(a);requestAnimationFrame(animate)}
+      requestAnimationFrame(animate);
     </script>
   </body>
 </html>
