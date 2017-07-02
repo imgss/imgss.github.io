@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/vue/2.1.8/vue.min.js"></script>
+    <style>
+      .reverse{
+        display: inline-block;
+        /*transform: rotate(180deg);*/
+        transition: all 0.3s ease;
+      }
+    </style>
+    <title>re</title>
+  </head>
+  <body>
+    <div id='app' class='form-line container'>
+      <div class="form-group">
+        <label for="">输入正则</label>
+        <input class="form-control" type='text' v-model='re' @change='highLight'>
+      </div>
+    <div>
+      <label for="">输入字符串</label>
+      <textarea class="form-control" v-model='source' rows='10'></textarea>
+    </div>
+    <div>
+      <label for="">匹配结果</label>
+      <div class="form-control" style='height:300px' v-html='str'></div>
+    </div>
+    </div>
+    <script>
+    var app = new Vue({
+      el:'#app',
+      data:{
+        re:'//g',
+        source:'😊😁😊❤👌😁😁🤷🤞😜🌹🌹🌹🎉🎂🐱‍👤🐱‍💻😊😊😊😊😊😊😊😊😊😊😊😙😍😍😍😍😇😇😇😇😇😇🤴🤴🎅🎅🎅🎅🎅🎅🎅💔💔💔💔💔💔💔💔💜💚🖤💗💗💗💦💦💦💦💦💤💤💤💤😭😭😭😭😭😭😐😉😉😍😙😇😋😒👰👼🙆💁🙅🎠🎠🎡🎡🎭🎭🎭🖼🖼🖼🛒🛒🛒🚅🚈💢💢💢🕉🕉🈹🈹🈹🈹🈹👁‍🗨👁‍🗨👁‍🗨🕖🕖🕖🕖🕖🌮🌮🌮🌮🍕🍕🍕🍕🍟🍟🍟🍟🍟',
+        str:'',
+      },
+      methods:{
+        highLight: function(){
+          try{
+            if((/^\/(.+)\/(g?m?i?u?)$/).test(this.re)){
+              console.log(RegExp.$1.charCodeAt(0).toString(16))
+              var  re = new RegExp('(' + RegExp.$1 + ')', RegExp.$2);
+            }else{
+              var re = new RegExp('(' + this.re + ')');
+            }
+            console.log(re);
+            this.str =  this.source.replace(/</g,'&lt;').replace(re,`<span style='color:red;font-size:2em' class='reverse'><b>$1</b></span>`);
+          }catch(err){
+            alert('不合法的正则');
+          }
+        }
+      }
+    })
+    </script>
+  </body>
