@@ -1,28 +1,77 @@
 <html>
   <head>
     <style>
-      .left{
-        display: inline-block;
-        background-image: url(./foot.png);
-        background-size: cover;
-        background-position: 0% 0%;
-        width:20px;
-        height:40px;
+      body{
+        padding-left: 46%;
       }
       .right{
-        display: inline-block;
         background-image: url(./foot.png);
-        background-size:cover;
-        background-position: 90% 0%;
+      }
+      .foot{
+        background-size: cover;
+        background-image: url(./foot.png);
         width:20px;
         height:40px;
+        opacity: 0.5;
+      }
+      .foot:hover{
+        opacity: 1;
+        cursor: pointer;
+      }
+      .foot-right{
+          display: flex;
+          justify-content: flex-end;
+          width:40px;
+      }
+      .foot-left{
+          display: flex;
+          justify-content: flex-start;
+          width:40px;
+      }
+      .foot-left div{
+        background-position: 0% 0%;
+      }
+      .foot-right div{
+        background-position: 100% 0%;
+      }
+      .foot-left .year{
+        right:40px;
+      }
+      .foot-right .year{
+        left:20px;
+      }
+      .foot span{
+        position:relative;
       }
     </style>
   </head>
   <body>
-    <div style='display:inline-block'>
-      <div class='left'></div>
-      <div class='right'></div>
+    <div class='foot-left'>
+      <div class='foot'></div>
+    </div>
+    <div class='foot-right'>
+      <div class='foot'><span class='year'>2017</sapn></div>
+    </div>
+    <div class='foot-left'>
+      <div class='foot'><span class='year'>2016</sapn></div>
+    </div>
+    <div class='foot-right'>
+      <div class='foot'><span class='year'>2015</sapn></div>
+    </div>
+    <div class='foot-left'>
+      <div class='foot'><span class='year'>2014</sapn></div>
+    </div>
+    <div class='foot-right'>
+      <div class='foot'><span class='year'>2013</sapn></div>
+    </div>
+    <div class='foot-left'>
+      <div class='foot'><span class='year'>2012</sapn></div>
+    </div>
+    <div class='foot-right'>
+      <div class='foot'><span class='year'>2011</sapn></div>
+    </div>
+    <div class='foot-left'>
+      <div class='foot'><span class='year'>2010</sapn></div>
     </div>
   </body>
 </html>
