@@ -18,8 +18,18 @@ document.addEventListener('mousewheel',handler);
 upBotton.addEventListener('click', handler);
 
 function handler(e) {
+    if (e.type = 'mousewheel'){
+        clearTimeout(handler.timer);
+        handler.timer = setTimeout(swipe, 200);
+    }else{
+        swipe()
+    }
+
+
+}
+function swipe(){
     var avatar_show = document.querySelector(".wrapper").style.transform !== "translateY(-300px)"
-    if( avatar_show ) {
+    if (avatar_show) {
 
         slideTo('-300px');
         upBotton.style.transform = 'rotate(180deg)';
@@ -28,7 +38,6 @@ function handler(e) {
         slideTo('0px');
         upBotton.style.transform = 'rotate(0deg)';
     }
-
 }
 
 function slideTo(px) {
