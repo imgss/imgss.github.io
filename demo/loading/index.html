@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>插件</title>
+  </head>
+  <body>
+    <div id="app">
+      <load text='imgss'></load>
+    </div>
+    <script src="http://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
+    <script src="./index.js"></script>
+    <script>
+      Vue.use(myPlugin)
+      var app = new Vue({
+        el: '#app',
+        data: {
+            current: 'home'
+        }
+      });
+    </script>
+
+  </body>
+</html>

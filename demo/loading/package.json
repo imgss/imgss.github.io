@@ -1,0 +1,15 @@
+{
+  "name": "loading",
+  "version": "1.0.0",
+  "description": "a vue plugin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vue",
+    "plugin"
+  ],
+  "author": "imgss",
+  "license": "MIT"
+}
