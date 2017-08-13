@@ -1,29 +1,28 @@
 let myPlugin = {
   install: function (Vue, options) {
-    Vue.component('load', {
-      props: ['text'],
+    Vue.component('loading', {
+      props: {
+        text:{
+          type:String
+        },
+        duration:{
+          type:String,
+          default:'1s'
+        }
+      },
       data: function() {
         return {};
       },
-      template: `
-        <div class='wrapper'>
-          <div class='loading'>
-            <span style='width:20px' v-for='char in text'>{{char}}</span>
-          </div>
-        </div>
-      `
-    });
-    Vue.mixin({
-      mounted:function(){
+      mounted: function () {
         var cssFlag = false;
-        return function(){
+        return function () {
           if (cssFlag) {
             return;
           }
           var head = document.querySelector('head');
           var style = document.createElement('style');
-          style.type='text/css';
-          style.innerHTML = `
+          style.type = 'text/css';
+          style.innerText = `
           .wrapper{
             display: flex;
             justify-content: center;
@@ -33,33 +32,12 @@ let myPlugin = {
             text-align: center;
             padding-top: 30px;
             height: 50px;
-            width: 100px;
             justify-content: space-between;
           }
           .loading span {
             margin-top: 0;
-            animation: 1s ease infinite move;
+            animation: ease infinite move;
             display: block;
-          }
-
-          .loading span:first-child {
-            animation-delay: 0s;
-          }
-
-          .loading span:nth-child(2) {
-            animation-delay: 0.2s
-          }
-
-          .loading span:nth-child(3) {
-            animation-delay: 0.4s
-          }
-
-          .loading span:nth-child(4) {
-            animation-delay: 0.6s
-          }
-
-          .loading span:last-child {
-            animation-delay: 0.8s
           }
 
           @keyframes move {
@@ -78,7 +56,22 @@ let myPlugin = {
           head.appendChild(style);
           cssFlag = true;
         };
-      }()
+      }(),
+      template: `
+        <div class='wrapper'>
+          <div class='loading'>
+            <span 
+              :style='{
+                width: "20px", 
+                animationDuration: duration.indexOf("s") === -1 ? duration + "s" : duration , 
+                animationDelay: parseInt(duration)/text.length*index +"s"
+              }' 
+              v-for='char,index in text'>
+              {{char}}
+            </span>
+          </div>
+        </div>
+      `
     });
   }
 };
