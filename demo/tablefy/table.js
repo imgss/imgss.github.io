@@ -1,56 +1,71 @@
 (function($){
-    var data = {
-        activeCell: null,
-        selects: {},
-        selectCols: [],
-        isSelector: false,
-        defalutInput: null
-    };
-    $.fn.table = function(options){
-        var defalutOptions = {};
+    var activeCell;
+    $.fn.table =  function(options){
+        var store = {
+            activeCell: null,
+            row: 0,
+            col: 0,
+            selects: {},
+            selectCols: [],
+            isSelector: false,
+            defalutInput: null
+        };
+        var defalutOptions = {
+            cellType:'td'
+        };
         options = $.extend(defalutOptions, options);
-        var wrapper = this.wrap('<div id="table-editable"></div>').parent();
+        var wrapper = this.wrap('<div></div>').parent();
         wrapper.append('<input \
                     type="text" \
                     style="box-sizing: border-box;display:none;position:absolute; \
                     ">');
-        var selectCols = data.selectCols = Object.keys(options.select);//由显示选择框的列号构成的数组
+        var selectCols = store.selectCols = Object.keys(options.select);//由显示选择框的列号构成的数组
         if(selectCols.length  > 0){
             for(var i = 0, len = selectCols.length; i < len; i++){
                 var colNum = selectCols[i];
                 var selectOptions = options.select[colNum];
-                var select = data.selects[colNum] = createSelect(selectOptions);
+                var select = store.selects[colNum] = createSelect(selectOptions);
                 wrapper.append(select);
             }
         }
         var input = wrapper.find('input');
-        data.defalutInput = input[0];
+        store.defalutInput = input[0];
         input.css(options.inputCss);
         //监听单元格点击事件
-        wrapper.on('click', 'td', function(event){
+        var self = this;
+        wrapper.on('click', options.cellType, function(event){
             var cell = event.target;
-            var index = getIndexOf(cell);
-            if(data.activeCell){//在移动input之前更新cell的值为input的值
+            var index = getColOf(cell);
+            event.stopPropagation();
+            if(store.activeCell){//在移动input之前更新cell的值为input的值
                 var inputValue = input.val();
-                data.activeCell.innerHTML = inputValue;
+                store.activeCell.innerHTML = inputValue;
+                //触发一个activeChange事件
+                self.trigger('activeChange',{
+                    row: store.row,
+                    col: store.col,
+                    value: inputValue
+                });
             }
-            data.activeCell = cell;
+            activeCell = store.activeCell = cell;
+            store.col = getColOf(cell);
+            store.row = getRowOf(cell, self[0]);
             var position = cell.getBoundingClientRect();
             var left = cell.offsetLeft;
             var top = cell.offsetTop;
             var value = cell.innerHTML;
-            if(data.selectCols.indexOf(String(index)) !== -1){
-                if(!data.isSelector){
+            if(store.selectCols.indexOf(String(index)) !== -1){
+                if(!store.isSelector){
                     input.hide();
-                    input = $(data.selects[index]);
-                    data.isSelector = true;
+                    input = $(store.selects[index]);
+                    store.isSelector = true;
                     input.show();
                 }
             }else{
-                if(data.isSelector){
+                if(store.isSelector){
                     input.hide();
-                    input = $(data.defalutInput);
-                    data.isSelector = false;
+                    input = $(store.defalutInput);
+                    store.isSelector = false;
                     input.show();
                 }
             }
@@ -66,32 +81,11 @@
                 height:position.height+'px'
             })[0].focus();
         });
-        //监听键盘事件
-        $(document).on('keydown', function(event){
-            var toActiveCell;
-            switch (event.keyCode){
-            case 38:
-                toActiveCell = findCell(data.activeCell, 'UP');
-                break;
-            case 37:
-                toActiveCell = findCell(data.activeCell, 'LEFT');
-                break;
-            case 40:
-                toActiveCell = findCell(data.activeCell, 'DOWN');
-                break;
-            case 39:
-                toActiveCell = findCell(data.activeCell, 'RIGHT');
-                break;
-            }
-            if(toActiveCell){
-                $(toActiveCell).trigger('click');
-            }
-        });
         $(window).on('resize', function(){
-            if(!data.activeCell){
+            if(!activeCell){
                 return;
             }
-            var cell = data.activeCell,
+            var cell = activeCell,
                 position = cell.getBoundingClientRect(),
                 left = cell.offsetLeft,
                 top = cell.offsetTop;
@@ -103,7 +97,29 @@
                 height:position.height+'px'
             })[0].focus();
         });
+        return this;
     };
+    //监听键盘事件
+    $(document).on('keydown', function(event){
+        var toActiveCell;
+        switch (event.keyCode){
+        case 38:
+            toActiveCell = findCell(activeCell, 'UP');
+            break;
+        case 37:
+            toActiveCell = findCell(activeCell, 'LEFT');
+            break;
+        case 40:
+            toActiveCell = findCell(activeCell, 'DOWN');
+            break;
+        case 39:
+            toActiveCell = findCell(activeCell, 'RIGHT');
+            break;
+        }
+        if(toActiveCell){
+            $(toActiveCell).trigger('click');
+        }
+    });
     //找出当前单元格的下一个单元格
     function findCell(cell, direction){
         var line = cell.parentElement,
@@ -142,8 +158,12 @@
         htmlStr += '</select>';
         return $(htmlStr)[0];
     }
-    //获取单元格的index;
-    function getIndexOf(cell){
+    //获取单元格的列号
+    function getColOf(cell){
         return [].indexOf.call(cell.parentElement.children, cell);
+    }
+    //获取单元格的行号
+    function getRowOf(cell, tableEl){ 
+        return [].indexOf.call(tableEl.children, cell.parentElement);
     }
 })(jQuery);

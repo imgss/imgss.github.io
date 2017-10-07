@@ -4,6 +4,20 @@
         <script src="https://cdn.bootcss.com/jquery/1.12.0/jquery.min.js"></script>
         <script src="../table.js"></script>
         <link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            .div-table{
+                display: table;
+                width: 100%;
+            }
+            .div-table>div{
+                display: table-row;
+            }
+            .div-table>div>div,h4{
+                display: table-cell;
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+        </style>
     </head>
     <body>
         <table id='test-table' class='table table-bordered'>
@@ -28,14 +42,44 @@
               </tr>
             </tbody>
         </table>
+        <h3>或者是table布局的div</h3>
+        <div id='test-div' class='div-table table-bordered'>
+            <div>
+                <h4 class="header">姓名</h4>
+                <h4 class="header">数学</h4>
+                <h4 class="header">外语</h4>
+                <h4 class="header">体育</h4>
+            </div>
+            <div>
+                <div>小李</div>
+                <div>96</div>
+                <div>83</div>
+                <div>A</div>
+            </div>
+            <div>
+                <div>小王</div>
+                <div>86</div>
+                <div>76</div>
+                <div>C</div>
+            </div>
+        </div>
         <script>
             $('#test-table').table({
-            inputCss: {padding: '0.75em'},
-            cellType: 'td',
-            select:{
-                3:['A','B','C','D']
-            }
-        })
+                inputCss: {padding: '0.75em'},
+                select:{
+                    3:['A','B','C','D']
+                }
+            })
+            $('#test-div').table({
+                inputCss: {padding: '0.75em'},
+                cellType: '#test-div>div>div',
+                select:{
+                    3:['A','B','C','D','E']
+                }
+            }).on('activeChange', function(event,data){
+                console.log(data)
+            });
+            
         </script>
     </body>
 </html>
