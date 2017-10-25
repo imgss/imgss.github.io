@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <title>111</title>
+        <style>
+            img{
+                display:none;
+            }
+            canvas{
+                border:1px solid
+            }
+        </style>
+    </head>
+    <body>
+        <img src="./红泡.png" alt="" id="red">
+        <img src="./蓝泡.png" alt=""  id="blue">
+        <canvas width="800px" height="600px">发现一款古董浏览器</canvas>
+        <script>
+            class Bubble{
+                constructor(x,y,r,color = 'blue',dirc = {x:1,y:1}){
+                    this.x = x;
+                    this.y = y;
+                    this.r = r;
+                    this.color = color;
+                    this.dirc = dirc;
+                }
+                follow(){
+                    this.prevX=0,this.prevY=0;
+                    let r=this.r;
+                    document.addEventListener('mousemove',(event) => {
+                        let {clientX,clientY} = event;
+                        this.prevX = this.x;
+                        this.prevY = this.y;
+                        this.x = clientX + r>800 ? 800-r : clientX<0 ? 0 : clientX-r/2;
+                        this.y = clientY + r>600 ? 600-r : clientY<0 ? 0 : clientY-r/2;
+                    })
+                }
+                move(){
+                    this.x += this.dirc.x;
+                    this.y += this.dirc.y;
+                    // if(this.x + this.r>800 || this.x<0) this.dirc.x=-this.dirc.x
+                    // if(this.y + this.r>600 || this.y<0) this.dirc.y=-this.dirc.y
+                    if(this.x>800) this.x = 0;
+                    if(this.x <0) this.x = 800-this.r;
+                    if(this.y>600) this.y = 0;
+                    if(this.y<0) this.y = 600-this.r;
+                }
+            }
+            class Paint{
+                static render(){
+                    let cvs = document.querySelector('canvas'),
+                        blue = document.querySelector('#blue'),
+                        red = document.querySelector('#red'),
+                        ctx = cvs.getContext('2d');
+                    let rdm= Math.random;
+                    let blueBubbles = [];
+                    for(let i=0;i<20;i++){
+                        blueBubbles.push(new Bubble(700*rdm(), 500*rdm(), 60*rdm(),'blue',{x:rdm(),y:rdm()}))
+                    }
+                    let redBubble = new Bubble(30,10,50, 'red');
+                    redBubble.follow();
+                        function loop(){
+                            ctx.clearRect(0,0,800,600);
+                            for(let i=0;i<20;i++){
+                                draw(blueBubbles[i]);
+                            }
+                            draw(redBubble);
+                            requestAnimationFrame(loop)
+                        }
+                        requestAnimationFrame(loop);
+                    function draw(bubble){
+                        ctx.drawImage(bubble.color === 'blue' ? blue : red, bubble.x, bubble.y, bubble.r, bubble.r);
+                        if(bubble.color === 'blue') {
+                            bubble.move();
+                            if(dist(bubble,redBubble)<bubble.r/2+redBubble.r/2){
+                                bubble.dirc = {x:redBubble.x-redBubble.prevX, y:redBubble.y-redBubble.prevY}
+                            }
+                        }
+                    }
+                    function dist(b1,b2){
+                        let dist =  Math.sqrt(Math.pow((b1.x-b2.x),2) + Math.pow((b1.y-b2.y),2))
+                        // console.log(dist)
+                        return dist
+                    }
+                }
+            }
+            setTimeout(Paint.render,50);
+        </script>
+    </body>
+</html>
