@@ -8,9 +8,21 @@
             canvas{
                 border:1px solid
             }
+            #question{
+                float: right;
+            }
         </style>
     </head>
     <body>
+        <div id="question">
+            1.	屏幕中随机产生n个蓝色大小不一的气泡，坐标随机<br/>
+            2.	红色气泡跟随鼠标移动<br/>
+            3.	当红色气泡会与蓝色气泡发生碰撞效果(类似桌球) <br/>
+            4.	红色气泡会被屏幕边缘阻挡<br/>
+            5.	蓝色气泡左右屏上下屏互通<br/>
+            6.	蓝色气泡的运动及互动行为请自由发挥<br/>
+        </div>
+            
         <img src="./红泡.png" alt="" id="red">
         <img src="./蓝泡.png" alt=""  id="blue">
         <canvas width="800px" height="600px">发现一款古董浏览器</canvas>
@@ -26,8 +38,11 @@
                 follow(){
                     this.prevX=0,this.prevY=0;
                     let r=this.r;
+                    let {x,y} = Paint.cvs.getBoundingClientRect()
                     document.addEventListener('mousemove',(event) => {
                         let {clientX,clientY} = event;
+                        clientX = clientX-x;
+                        clientY = clientY-y;
                         this.prevX = this.x;
                         this.prevY = this.y;
                         this.x = clientX + r>800 ? 800-r : clientX<0 ? 0 : clientX-r/2;
@@ -46,8 +61,11 @@
                 }
             }
             class Paint{
+                static get cvs(){
+                    return document.querySelector('canvas')
+                }
                 static render(){
-                    let cvs = document.querySelector('canvas'),
+                    let cvs = Paint.cvs,
                         blue = document.querySelector('#blue'),
                         red = document.querySelector('#red'),
                         ctx = cvs.getContext('2d');
@@ -72,12 +90,21 @@
                         if(bubble.color === 'blue') {
                             bubble.move();
                             if(dist(bubble,redBubble)<bubble.r/2+redBubble.r/2){
-                                bubble.dirc = {x:redBubble.x-redBubble.prevX, y:redBubble.y-redBubble.prevY}
+                                console.log(bubble)
+                                let speedX = redBubble.x-redBubble.prevX,
+                                    speedY = redBubble.y-redBubble.prevY;
+                                let speed = {
+                                    x: speedX<=10 && speedX>=-10 ? speedX || -bubble.dirc.x : speedX>10 ? 10 : -10, 
+                                    y: speedY<=10 && speedY>=-10 ? speedY || -bubble.dirc.y : speedY>10 ? 10 : -10
+                                }
+                                bubble.dirc = speed;
                             }
                         }
                     }
                     function dist(b1,b2){
-                        let dist =  Math.sqrt(Math.pow((b1.x-b2.x),2) + Math.pow((b1.y-b2.y),2))
+                        let r1 = b1.r/2,
+                            r2 = b2.r/2;
+                        let dist =  Math.sqrt(Math.pow((b1.x + r1- b2.x - r2),2) + Math.pow((b1.y +r1-b2.y-r2),2))
                         // console.log(dist)
                         return dist
                     }
