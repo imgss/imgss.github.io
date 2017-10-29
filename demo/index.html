@@ -23,6 +23,46 @@
          width:30%;
          padding-left:30px;
      }
+     .animation{
+         animation: show 3s 1
+     }
+     @keyframes show{
+         0%{
+            left:-66.7vh;
+         }
+         25%{
+            left:0;
+         }
+         75%{
+            left:0;
+         }
+         100%{
+            left:-66.7vh;
+         }
+     }
+     #dave{
+         background-image: url('./dave.png');
+         background-size:cover;
+         position: absolute;
+         top:0;
+         width:66.7vh;
+         height:100vh;
+         left:-66.7vh;
+         -webkit-transition: all .5s ease;
+         -moz-transition: all .5s ease;
+         transition: all .5s ease;
+     }
+     #msg{
+         border:1px solid rgb(32, 32, 32);
+         border-radius: 4px;
+         padding: 5px;
+         height:80px;
+         width:150px;
+         position:absolute;
+         background: #fff;
+         left:46vh;
+         top:20vh;
+     }
     </style>
 </head>
 
@@ -42,7 +82,13 @@
                 </ul>
             </div>
         <iframe class="one"></iframe>
-        <script>
+    </div>
+    <div id="dave" class="animation">
+        <div id="msg">
+            这里是我平时写的一些小demo,希望大家喜欢
+        </div>
+    </div>
+    <script>
             document.querySelector('ul').addEventListener('click',function(event){
                 event.preventDefault();
                 console.log(event.target);
@@ -50,7 +96,11 @@
                 document.querySelector('iframe').src=href;
             });
         </script>
-    </div>
+    <script>
+        // window.onload= function(){
+        //     document.getElementById('dave').style.left = '0px';
+        // }
+    </script>
 </body>
 
 </html>
