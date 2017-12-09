@@ -11,58 +11,69 @@
             padding: 0;
             margin:0;
         }
-     .two{
-         display: flex;
-         justify-content: space-between;
-         height: 100vh
-     }
-     .one{
-         width:70%
-     }
-     .menu{
-         width:30%;
-         padding-left:30px;
-     }
-     .animation{
-         animation: show 3s 1
-     }
-     @keyframes show{
-         0%{
+        .two{
+            display: flex;
+            justify-content: space-between;
+            height: 100vh
+        }
+        .one{
+            width:70%
+        }
+        .menu{
+            width:30%;
+            padding-left:30px;
+        }
+        .animation{
+            animation: show 3s 1
+        }
+        @keyframes show{
+            0%{
+                left:-66.7vh;
+            }
+            25%{
+                left:0;
+            }
+            75%{
+                left:0;
+            }
+            100%{
+                left:-66.7vh;
+            }
+        }
+        #dave{
+            background-image: url('./dave.png');
+            background-size:cover;
+            position: absolute;
+            top:0;
+            width:66.7vh;
+            height:100vh;
             left:-66.7vh;
-         }
-         25%{
-            left:0;
-         }
-         75%{
-            left:0;
-         }
-         100%{
-            left:-66.7vh;
-         }
-     }
-     #dave{
-         background-image: url('./dave.png');
-         background-size:cover;
-         position: absolute;
-         top:0;
-         width:66.7vh;
-         height:100vh;
-         left:-66.7vh;
-         -webkit-transition: all .5s ease;
-         -moz-transition: all .5s ease;
-         transition: all .5s ease;
-     }
-     #msg{
-         border:1px solid rgb(32, 32, 32);
-         border-radius: 4px;
-         padding: 5px;
-         height:80px;
-         width:150px;
-         position:absolute;
-         background: #fff;
-         left:46vh;
-         top:20vh;
-     }
+            -webkit-transition: all .5s ease;
+            -moz-transition: all .5s ease;
+            transition: all .5s ease;
+        }
+        #msg{
+            border:1px solid rgb(32, 32, 32);
+            border-radius: 4px;
+            padding: 5px;
+            height:80px;
+            width:150px;
+            position:absolute;
+            background: #fff;
+            left:46vh;
+            top:20vh;
+        }
+        a{
+            text-decoration: none;
+        }
+        li{
+            transition: all .3s ease;
+            line-height: 1.5;
+            list-style-type: square;
+        }
+        li:hover{
+            transform: translateX(20px);
+        }
     </style>
 </head>
 
@@ -79,7 +90,7 @@
                     <li><a href='./tablefy/test/test.html'>可编辑表格jQuery插件</a></li>
                     <li><a href='./gif/index.html'>canvas生成gif头像</a></li>
                     <li><a href='./bubble/index.html'>一道笔试题</a></li>
-                    <li><a href='./1010/index.html'>react-1010游戏</a>-<a href='https://github.com/imgss/react-1010'>repo</a></li>
+                    <li><a href='./1010/index.html'>react-1010游戏</a> | <a href='https://github.com/imgss/react-1010'>github</a></li>
                 </ul>
             </div>
         <iframe class="one"></iframe>
@@ -91,12 +102,15 @@
     </div>
     <script>
             document.querySelector('ul').addEventListener('click',function(event){
-                event.preventDefault();
+                
                 console.log(event.target);
                 let href = event.target.href;
-                document.querySelector('iframe').src=href;
+                if(href.indexOf('github') === -1){
+                    event.preventDefault();
+                    document.querySelector('iframe').src=href;
+                }
             });
-        </script>
+    </script>
     <script>
         window.onload= function(){
             document.getElementById('dave').className = 'animation';
