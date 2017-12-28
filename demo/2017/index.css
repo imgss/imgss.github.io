@@ -1,0 +1,107 @@
+body {
+  background-color: #1a2434;
+  color: #fff;
+  font-size: medium;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar{
+  display: none;
+}
+*{
+  padding: 0;
+  margin: 0;
+}
+html {
+  font-size: 10px;
+}
+h3{
+  margin-bottom: 2rem
+}
+h4{
+  margin: 1rem 0;
+}
+p {
+  line-height: 1.5em;
+  color: #eee;
+}
+.desc:before,
+.desc:after {
+  content: ' ';
+  background: #fff;
+  width: 3rem;
+  position: absolute;
+  height: 1px;
+  top: 50%;
+}
+.desc:before {
+  margin-left: -4.4rem;
+}
+.desc:after {
+  margin-left: 1.4rem;
+}
+.full {
+  width: 100%;
+  height: 100vh;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  background-size: cover;
+}
+.banner {
+  font-size: 16vw;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+}
+.month {
+  display: flex;
+  align-items: center;
+}
+.month .content {
+  width: 80%;
+  padding: 2rem;
+  overflow: auto;
+  background: rgba(0,0,0,.6);
+  align-self: stretch;
+}
+.month .content p {
+  color: #eee;
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  line-height: 3rem;
+  max-width: 80%;
+  text-align: justify;
+}
+.month span:last-child {
+  font-size: 2rem;
+  margin: 1rem 0;
+  flex: 1;
+  text-align: center;
+}
+
+.page2{
+  background-image: url('./img/1.jpeg');
+}
+.page3{
+  background-image: url('./img/2.jpeg');
+}
+.page4{
+  background-image: url('./img/3.jpeg');
+}
+.page5{
+  background-image: url('./img/4.jpeg');
+}
+#chart{
+  background: #fff;
+}
+@media screen and (max-width:400px){
+  .month{
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+  }
+  .month .content{
+    width: 90vw;
+  }
+  .month .content p{
+    max-width: 100%;
+  }
+}

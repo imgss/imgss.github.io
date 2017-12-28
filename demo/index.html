@@ -105,9 +105,9 @@
                 
                 console.log(event.target);
                 let href = event.target.href;
-                if(href.indexOf('github') === -1){
+                if(href.indexOf('github.com') === -1){
                     event.preventDefault();
-                    document.querySelector('iframe').src=href;
+                    document.querySelector('iframe').src = href;
                 }
             });
     </script>

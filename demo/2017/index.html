@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="index.css">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <!-- load and instantiate ScrollReveal first -->
+    <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
+    <script src="https://unpkg.com/frappe-charts@0.0.8/dist/frappe-charts.min.iife.js"></script>
+    <script>
+      window.sr = ScrollReveal({reset: true, mobile: true});
+
+      // Add class to <html> if ScrollReveal is supported
+      // Note: this method is deprecated, and only works in version 3
+      if (sr.isSupported()) {
+        document.documentElement.classList.add('sr');
+      }
+
+    </script>
+
+     <style>
+
+      /* Ensure elements load hidden before ScrollReveal runs */
+      .sr .fooReveal { visibility: hidden; }
+
+    </style>
+
+  </head>
+  <body>
+
+    <div class="fooContainer">
+      <div class="full banner page">
+        <span id="year">1993</span>
+        <span  class="desc" style="font-size: 1.6rem">以此记录即将过去的一年</span>
+      </div>
+      <div class="full page2 month">
+        <div class="content">
+          <h3>从CCS🛳到CSS🐒</h3>
+          <p>CCS，中国船级社的简写；CSS，层叠样式表的简写。</p>
+          <p>这两个缩写来自两个不同的行业，一个来自传统重工业，一个来自半新不旧的互联网，从前者到后者，看起来跨度还是有点大的。所幸互联网是个包容性很强的行业，半路出家的野路子不在少数。单单我知道的，就有学医的，学经济的，学机械的，学法律的。。。可以说是条条大路通罗马了</p>
+          <p>在酝酿大半年之后，2月27号我从船厂辞职，到了一家创业公司。一个造船的就这样变成了一个做网页的。对于转行这件事，家里还是有不同意见的，比如我爸，他就觉得国企稳定，不应该瞎折腾。我妈的意见倒是没那么明确，只是说程序员听起来不响亮，老一辈的人问起来，说出去人家都不知道干嘛的，还不如造船响亮。尽管家里有些意见，我还是一意孤行地辞掉了工作。</p>
+          <p>出来之后，先在大学室友那里借宿半个月，然后租了一个不到10平的房子。刚出来还是有点不适应的，主要是通勤时间和工作时间变长了。在岛上的时候，早上骑车10分钟到办公室，现在要公交加地铁可能要一个小时；之前是出门加入自行车大军，现在成了挤地铁大军的一员了。</p>
+          <p>另一个变化是每月交1200块的房租，占据了每月开支的一个大头。开销有了这个大头，工资却不到4k，我加入了光荣的月光族。</p>
+        </div>
+        <span><i class="fa fa-calendar fa-2" aria-hidden="true"></i> 1-3月</span>
+      </div>
+      <div class="full page3 month">
+        <div class="content">
+          <h4>挪窝</h4>
+          <p>进入四月份之后，天气渐渐暖和起来，不少花也开始开放。借着春光，我把松江有特色的地方转了一遍，像七宝，佘山，泰晤士小镇。大部分是骑着摩拜去的，锻炼身体还省钱，另外是骑车在路上的感觉很好，耳机里再放上许巍的歌就绝了。到地方之后，就开始拿着相机一通乱拍。然而并没有拍出什么大作出来，有好多照片，当时觉得挺好，回去之后再一看就觉得很别扭，修图技术又不行，最后也就没勇气发朋友圈了。</p>
+          <p>进入6月之后，天气渐渐变热，也就不怎么出去了。在这个月月初，因为实习期满，我向老板第一次提出加薪，不然真的快成要饭的了。他在7月给我加了1k，于是我的状况好了那么一点。</p>
+          <p>7月可以说是今年最热的一个月了，气温一度达到40度，据说还破了记录。也是租房的时候没想周全，我租的房子到期恰好是这最热的几天。我准备再跟房东续到年底，房东却说不会再短租，至少要一年。我本来也不是很满意这个房间，一是因为周围没有吃饭的地方，坐公交要走一里路；二是因为房子是阴面的，晒不到太阳；另外想着随时准备换工作，一年岂不是太长了。我就在58同城上又找了一个地方，离我现在住的地方一公里左右，跟他约好第二天去看一看。</p>
+          <p>第二天，当天最高气温38度。我走过去就除了一身汗。到了地方，看了看，还是挺满意的。其实我没什么经验，并不知道关注什么地方。就觉得有阳台，离公交站近，还能远眺佘山。。。价格也便宜了一点，貌似比之前的强了不少，当时就准备签合同了。房东没带合同，他说到不远的一个链家去问人家要一份，让我跟他一块去。在路上，他问我，空调是自己装还是让他装。啊？没有空调？我看房子的时候怎么没注意。。。当时就有点后悔，毕竟热的日子才刚刚开始。可是反悔的话没说出口，最后还是签了租房合同。没办法了，空调装了又要多收租金，弄个风扇先凑活吧。。</p>
+          <p>签了合同，付了押金，我当天晚上就搬了过去，顺便搞了一个救命的电风扇。搬走的时候，我留恋的看了一眼墙上的空调，算作告别。</p>
+          <h4>酷暑面前，一切电风扇都是纸老虎🌡</h4>
+          <p>搬进去的第一天，我就感受到了热死了是什么滋味。毕竟前一天晚上还吹着空调，以后就要直面高温了。那几天，天天手机上能看到高温红橙黄高温预警，告诉市民朋友减少户外活动。早上5点钟气温最低，大概是28度左右；下午3点之后，气温开始回落，晚上7点钟，气温大概是33度。不要问我为什么记得这么清楚，那几天我看气温的趋势跟股民看股票一样积极。下班回到住的地方，一打开房门，一股热气热情地欢迎我的到来。即使把风扇开最大档，也没有什么用。即使坐着不动，汗水照样往下流。有时候，半夜醒过来，感觉口干舌燥的，浑身上下都是汗。后来，我找到了一个土方法，在风扇上挂湿毛巾，加快散热，半夜吹干了，再换一次，还买过几瓶冻成冰块的矿泉水来降温。就这样过了大概半个多月，温度总算慢慢降了下来。在时间面前，酷暑也只是纸老虎罢了</p>
+          <p>经历这半个月之后，我还是有收获的--可以详细描述出35度高温天气的体感是什么样的</p>
+        </div>
+        <span><i class="fa fa-calendar fa-2" aria-hidden="true"></i> 4-7月</span> 
+      </div>
+      <div class="full page4 month">
+        <div class="content">
+          <p>8月中旬过后，温度不那么吓人了。在接下来的两个月里，我们搬到了"客户"的地方办公，继续完成着那个没有严格测试，界面没有设计，感觉不可能交付的系统。这两个月里，大家心里面都很忐忑，唯恐客户会一脚把我们踢掉。在那两个月里，我们几乎是根据客户的需求把整个项目重新翻了一遍，大家在盲目的往前赶的过程中，更顾不上质量了。根据墨菲定律，越担心发生的事，就越有可能发生。</p>
+          <p>其实最煎熬的不是失败，反而是知道会失败，却不知道什么时候会失败，中间等待的这段日子最难受。十一长假过后，客户方的负责人发了一份邮件，宣告项目的停止。由于之前没有正式的合同，我们没有得到损失的补偿，大家回到了原来办公的地方。</p>
+          <p>其实想想，失败一开始就是注定的。开始项目时，需求都不明确；技术上，使用着一个内部开发的，没有经历过项目迭代的四不像框架；界面和体验上，没有专业一点的人来设计或者提出改善的意见；质量上，没有经过测试，让客户时不时看到一个bug；一般初创公司都会走的捷径--山寨，我们也没做过；市面上有同类的产品，但是老板希望我们按着他的想法走，尽管这个想法可能很离谱。。。我想还能总结出一堆的原因出来，包括团队内部的信任，沟通的问题，这一个个问题一直存在,却没有被看到，被重视，被解决，直到项目最后失败。</p>
+        </div>
+        <span><i class="fa fa-calendar fa-2" aria-hidden="true"></i> 8-10月</span>
+      </div>
+      <div class="full page5 month">
+        <div class="content">
+          <h4>辞职</h4>
+          <p>到了11月，由于项目的失败，大家陷入一种茫然的情绪中，老板受到了一些打击，也不知道公司下一步该怎么走。不过他意识到了自己作为一个初创团队，还没有生存下来，就去分配资源去做内部的框架是一件多么sb的事。于是开始让我们用一个现成的UI框架element重写界面。我跟另外一个小伙子一边写，一边开始投简历。</p>
+          <p>我就这么隔几天投一份，没消息了就再投一份。因为我倒还没有急着走，感觉自己还是有点底气不足。另外也不想搬家，就挑车程不超过1个半小时的公司投。然后有一天，就接到电话，让我过去聊聊。我跟老板请了半天假，由于他们没有前端，技术负责人是搞后台的，就没聊很深入的话题，谈了一通之前的经历之后，就定了下来。</p>
+          <h4>新公司</h4>
+          <p>当时界面用element已经翻新的差不多了，我就跟老板提出了辞职。另外一个小伙伴也不想再呆下去，我们就一起告别了老板。第二天我去新公司报到，他说要给自己放个假，然后再去找工作。</p>
+          <p>到了新公司后，接到的是一个快要上线的服务号，由于公司之前没有前端，导致功能齐全但是界面太丑，我就开始写css...一个星期之后，正式上线，这也是我自改行之后参与的第一个上线的项目，尽管是个小项目，我的贡献也只是css,和一些简单交互，但想想还是有点小激动的。</p>
+          <p>2017是我的本命年。这一年我搬了两次家，也换了两份工作。这一年因为我选择转行而多了一些小小的波折。</p>
+          <div id="chart"></div>
+        </div>
+        <span><i class="fa fa-calendar fa-2" aria-hidden="true"></i> 11-12月</span>
+      </div>
+    </div>
+    <script>
+      function animate () {
+        if (TWEEN.update()) {
+          requestAnimationFrame(animate)
+        }
+      }
+
+      new TWEEN.Tween({ tweeningNumber: 1993 })
+        .easing(TWEEN.Easing.Quadratic.InOut)
+        .to({ tweeningNumber: 2017 }, 2000)
+        .onUpdate(function () {
+          document.getElementById('year').textContent = this.tweeningNumber.toFixed(0)
+        })
+        .start()
+
+      animate()
+    </script>
+    <!-- make reveal calls last -->
+    <script>
+      sr.reveal('.page .desc', { delay: 2000 });
+      sr.reveal('.page3', { container: '.fooContainer' });
+      sr.reveal('.month span:last-child', {
+        // 'bottom', 'left', 'top', 'right'
+        origin: 'bottom',
+        // Can be any valid CSS distance, e.g. '5rem', '10%', '20vw', etc.
+        distance: '10vh',
+        duration: 500,
+        delay: 100,
+        scale: 3,
+        // Starting angles in degrees, will transition from these values to 0 in all axes.
+        rotate: { x: 10, y: 0, z: 0 },
+       });
+       if(!navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)){
+        sr.reveal('.month .content p', {
+          // 'bottom', 'left', 'top', 'right'
+          origin: 'bottom',
+          // Can be any valid CSS distance, e.g. '5rem', '10%', '20vw', etc.
+          distance: '30vh',
+          duration: 500,
+          delay: 100,
+          // Starting angles in degrees, will transition from these values to 0 in all axes.
+          scale: 0.5
+        });
+      }
+      sr.reveal('#chart', {
+          origin: 'bottom',
+          distance: '30vh',
+          duration: 100,
+          scale: 0.5,
+          beforeReveal: function (domEl) {
+            drawChart();
+          },
+        })
+
+    </script>
+    <script src="./index.js"></script>
+  </body>
+</html>
