@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>倒计时插件</title>
+    <script src="https://cdn.bootcss.com/jquery/2.0.1/jquery.min.js"></script>
+    <script src="./countdown.js"></script>
+</head>
+<body>
+    <div data-target="2018-3-15 10:50" id="countdown"></div>
+    <div data-target="2018-3-12 2:24:22" id="countdown"></div>
+    <div data-target="2018-3-10" id="countdown1"></div>
+    <script>
+        $('[data-target]').each(function(){
+            $(this).countdown();
+        });
+    </script>
+</body>
+</html>
