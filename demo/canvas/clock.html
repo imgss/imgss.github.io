@@ -2,10 +2,12 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <script src="../img/stats.min.js"></script>
     <title>clock</title>
   </head>
   <body>
     <canvas width='500' height='500'></canvas>
+
     <script>
       var canvas = document.querySelector('canvas');
       var ctx = canvas.getContext('2d');
@@ -17,28 +19,32 @@
       var radgrad = ctx.createRadialGradient(250, 250, 190, 250, 250, 200);
       radgrad.addColorStop(0, '#fff');
       radgrad.addColorStop(1, '#333');
-      function clock(){
-        bigCX = 250 + dist*Math.cos(a)
-        bigCY = 250 + dist*Math.sin(a)
-        ctx.clearRect(0,0,500,500);
-        ctx.beginPath();
+        // 大圆绕着小圆转
+
+
         ctx.arc(250, 250, 200, 0, Math.PI * 2, true);
         ctx.strokeStyle = radgrad; 
         ctx.lineWidth = 20;
         ctx.stroke();
         ctx.clip();
-        ctx.closePath();
+      function clock(){
+        ctx.clearRect(0,0,500,500);
+        bigCX = 250 + dist*Math.cos(a)
+        bigCY = 250 + dist*Math.sin(a)
         ctx.beginPath();
         ctx.moveTo(bigCX, bigCY);  
         ctx.lineTo(500-bigCX, 500-bigCY);  
         ctx.strokeStyle='#f66'; 
         ctx.lineWidth = 2;
         ctx.stroke();
-        ctx.closePath();
+
         drawLine();
+
         drawLine(Math.PI/12, 10, -1);
+
         drawLine(0, 2, -1, 72);
       }
+      // 画长短刻度
       function drawLine(start, len, text, count){
         start = start || 0;
         len = len || 30;
@@ -56,17 +62,43 @@
             var startTextY = bigCY + (bigR-len-30)*Math.sin(angle*i + start);
             ctx.fillText(i+1, startTextX, startTextY);
           }
+          if((startX <0 && endX < 0) || (startX >500 && endX > 500) || (startY <0 && endY < 0) || (startY  > 500 && endY > 500)){
+            continue;
+          }
           ctx.beginPath();
           ctx.lineCap="round";
           ctx.moveTo(startX,startY);
           ctx.lineTo(endX,endY);
           ctx.lineWidth = 4;
           ctx.stroke();
-          ctx.closePath();
         }
       }
-      function animate(){a += Math.PI/360; clock(a);requestAnimationFrame(animate)}
+      function animate(){
+        a += Math.PI/360; 
+        clock(a);
+        requestAnimationFrame(animate)
+      }
       requestAnimationFrame(animate);
+    </script>
+        <script>
+      (function(){var stats = new Stats();
+      stats.showPanel( 0 ); // 0: fps, 1: ms, 2: mb, 3+: custom
+      document.body.appendChild( stats.dom );
+  
+      function animate() {
+  
+        stats.begin();
+  
+        // monitored code goes here
+  
+        stats.end();
+  
+        requestAnimationFrame( animate );
+  
+      }
+  
+      requestAnimationFrame( animate );
+      })()
     </script>
   </body>
 </html>
