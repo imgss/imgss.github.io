@@ -1,58 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="./two.min.js"></script>
   <title>嗯。。</title>
-
   <style>
-  @keyframes swing {
-    20% {
+    @font-face {font-family: 'webfont';
+      src: url('//at.alicdn.com/t/webfont_qetx578gq7s.eot'); /* IE9*/
+      src: url('//at.alicdn.com/t/webfont_qetx578gq7s.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+      url('//at.alicdn.com/t/webfont_qetx578gq7s.woff') format('woff'), /* chrome、firefox */
+      url('//at.alicdn.com/t/webfont_qetx578gq7s.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+      url('//at.alicdn.com/t/webfont_qetx578gq7s.svg#站酷小薇体') format('svg'); /* iOS 4.1- */
+    }
+    @font-face {font-family: 'siyuan';
+      src: url('//at.alicdn.com/t/webfont_27h6tgds27f.eot'); /* IE9*/
+      src: url('//at.alicdn.com/t/webfont_27h6tgds27f.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+      url('//at.alicdn.com/t/webfont_27h6tgds27f.woff') format('woff'), /* chrome、firefox */
+      url('//at.alicdn.com/t/webfont_27h6tgds27f.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+      url('//at.alicdn.com/t/webfont_27h6tgds27f.svg#思源黑体-极细') format('svg'); /* iOS 4.1- */
+    }
+
+
+  </style>
+  <style>
+    @keyframes swing {
+      20% {
         transform: rotate(15deg)
-    }
+      }
 
-    40% {
+      40% {
         transform: rotate(-10deg)
-    }
+      }
 
-    60% {
+      60% {
         transform: rotate(5deg)
-    }
+      }
 
-    80% {
+      80% {
         transform: rotate(-5deg)
+      }
+
+      to {
+        transform: rotate(0deg)
+      }
     }
 
-    to {
-        transform: rotate(0deg)
-    }
-}
-    .shake{
+    .shake {
       animation: 1.5s swing infinite
     }
+
     @font-face {
       font-family: 'pinghei';
       src: url('./font/zhu.ttf');
-      src:
-        url('./font/zhu.eot?#font-spider') format('embedded-opentype'),
-        url('./font/zhu.woff') format('woff'),
-        url('./font/zhu.ttf') format('truetype'),
-        url('./font/zhu.svg') format('svg');
+      src: url('./font/zhu.eot?#font-spider') format('embedded-opentype'),
+      url('./font/zhu.woff') format('woff'),
+      url('./font/zhu.ttf') format('truetype'),
+      url('./font/zhu.svg') format('svg');
       font-weight: normal;
       font-style: normal;
     }
 
     /*使用选择器指定字体*/
+
     #modal {
-        font-family: 'pinghei';
+      font-family: 'pinghei';
     }
 
     body {
       background-color: #fff6ea
     }
-    #modal{
+
+    #modal {
       display: none;
       top: 50%;
       transform: translateY(-50%);
@@ -63,145 +84,149 @@
       width: 100%;
       text-align: center
     }
-    #modal span{
+
+    #modal span {
       width: 50%;
       float: left;
     }
   </style>
   <style>
-  .man {
-  width: 200px;
-  margin-top: 40px;
-  height: 360px;
-}
+    .man {
+      width: 200px;
+      margin-top: 40px;
+      height: 360px;
+    }
 
-.head {
-  width: 70px;
-  height: 70px;
-  background-color: #333;
-  border-radius: 50%;
-  animation-name: body;
-  animation-duration: 4s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-}
+    .head {
+      width: 70px;
+      height: 70px;
+      background-color: #333;
+      border-radius: 50%;
+      animation-name: body;
+      animation-duration: 4s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
 
-.body {
-  height: 144px;
-  width: 62px;
-  background-color: #333;
-  border-radius: 100% 20% 0 0;
-  transform: skewX(-2deg);
-  position: relative;
-  left: -50px;  
-  animation-name: body;
-  animation-duration: 4s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-}
+    .body {
+      height: 144px;
+      width: 62px;
+      background-color: #333;
+      border-radius: 100% 20% 0 0;
+      transform: skewX(-2deg);
+      position: relative;
+      left: -50px;
+      animation-name: body;
+      animation-duration: 4s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
 
-.foot {
-  width: 40px;
-  height: 14px;
-  border-radius: 10px 80% 4px 4px;
-  transform: skewX(5deg);
-  background-color: #333;
-  display: inline-block;
-  animation-name: foot;
-  animation-duration: 1.8s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-}
-.foot:last-child {
-    margin-left: -40px;
-    animation-delay: .9s;
-  }
+    .foot {
+      width: 40px;
+      height: 14px;
+      border-radius: 10px 80% 4px 4px;
+      transform: skewX(5deg);
+      background-color: #333;
+      display: inline-block;
+      animation-name: foot;
+      animation-duration: 1.8s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
 
-.feet {
-  text-align: left;
-  position: relative;
-  top: 100px;
-  left: -66px;
-  
-}
-.feet:before {
-    width: 120px;
-    height: 8px;
-    border-radius: 50%;
-    content: "";
-    background: rgba(#000,.1);
-    position: absolute;
-    bottom: -2px;
-    left: -16px; 
-    animation-name: shadow;
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-  }
+    .foot:last-child {
+      margin-left: -40px;
+      animation-delay: .9s;
+    }
 
+    .feet {
+      text-align: left;
+      position: relative;
+      top: 100px;
+      left: -66px;
 
-@keyframes foot {
-  20% {
-    transform: translate3d(34px, -16px, 0) rotate(4deg);
-  } 
-  26% {
-      transform: translate3d(34px, -10px, 4) rotate(0deg);
-  }
-  40% {
-      transform: translate3d(56px, -6px, 0) rotate(-6deg);
-  }
-  44% {
-      transform: translate3d(56px, 0, 0) rotate(0deg);
-  }
-   
-}
+    }
 
-@keyframes body {
-  25% {
-    transform: translateY(5px);
-  }
-  50% {
-    transform: translateY(0);
-  }
-  75% {
-    transform: translateY(5px);
-  }
-}
+    .feet:before {
+      width: 120px;
+      height: 8px;
+      border-radius: 50%;
+      content: "";
+      background: rgba(#000, .1);
+      position: absolute;
+      bottom: -2px;
+      left: -16px;
+      animation-name: shadow;
+      animation-duration: 3s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
 
 
-@keyframes shadow {
-  25% {
-    transform: scale(1.1);
-  }
- 
-  75% {
-    transform: scale(.96);
-  }
-}
+    @keyframes foot {
+      20% {
+        transform: translate3d(34px, -16px, 0) rotate(4deg);
+      }
+      26% {
+        transform: translate3d(34px, -10px, 4) rotate(0deg);
+      }
+      40% {
+        transform: translate3d(56px, -6px, 0) rotate(-6deg);
+      }
+      44% {
+        transform: translate3d(56px, 0, 0) rotate(0deg);
+      }
+
+    }
+
+    @keyframes body {
+      25% {
+        transform: translateY(5px);
+      }
+      50% {
+        transform: translateY(0);
+      }
+      75% {
+        transform: translateY(5px);
+      }
+    }
+
+
+    @keyframes shadow {
+      25% {
+        transform: scale(1.1);
+      }
+
+      75% {
+        transform: scale(.96);
+      }
+    }
   </style>
-  <style> 
-    #sad-man{
+  <style>
+    #sad-man {
       position: absolute;
       transform: scale(0.4);
       transition: transform 15s linear;
       bottom: 10px;
       opacity: 0;
     }
-    #sad-man:before{
+
+    #sad-man:before {
       content: '...乐快节夕七';
       font-size: 30px;
       position: absolute;
       left: -250px;
       top: 98px;
     }
-    #sad-man.show{
+
+    #sad-man.show {
       opacity: 1;
       transform: translateX(400px) scale(0.4);
     }
-
   </style>
   <style>
-    .reload{
+    .reload {
       width: 25px;
       height: 25px;
       top: 10px;
@@ -209,15 +234,18 @@
       position: fixed;
       z-index: 99999;
     }
-
   </style>
 </head>
+
 <body>
+  <audio src="./audio/bird.mp3" id="bird" preload="auto" loop></audio>
+  <audio src="./audio/firework.mp3" id="firework" preload="auto"></audio>
   <img src="./刷新.svg" alt="" class="reload" onclick="location.reload()">
-    <svg width="80" height="80" viewBox="0 0 800 700" xmlns="http://www.w3.org/2000/svg" style="display: none;">
-      <path d="m263.42 235.15c-66.24 0-120 53.76-120 120 0 134.76 135.93 170.09 228.56 303.31 87.574-132.4 228.56-172.86 228.56-303.31 0-66.24-53.76-120-120-120-48.048 0-89.402 28.37-108.56 69.188-19.161-40.817-60.514-69.188-108.56-69.188z" />
-    </svg>
-  <div id="modal" >
+  <svg width="80" height="80" viewBox="0 0 800 700" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <path d="m263.42 235.15c-66.24 0-120 53.76-120 120 0 134.76 135.93 170.09 228.56 303.31 87.574-132.4 228.56-172.86 228.56-303.31 0-66.24-53.76-120-120-120-48.048 0-89.402 28.37-108.56 69.188-19.161-40.817-60.514-69.188-108.56-69.188z"
+    />
+  </svg>
+  <div id="modal">
     <div>咱俩在一起吧</div>
     <div style="margin-top:25px">
       <span style="color: #f31" id="ok" class="shake">好</span>
@@ -225,144 +253,152 @@
     </div>
   </div>
   <div class="man" id="sad-man">
-      <div class="head"></div>
-      <div class="body"></div>
-      <div class="feet">
-        <div class="foot"></div>
-        <div class="foot"></div>
-      </div>
+    <div class="head"></div>
+    <div class="body"></div>
+    <div class="feet">
+      <div class="foot"></div>
+      <div class="foot"></div>
     </div>
-<script>
-  var heartHeight = 150
-  var beatSpeed = 0.003
-  var two = new Two({
-    fullscreen: true,
-    type: Two.Types.canvas,
-    autostart: true
-  }).appendTo(document.body);
-  //m263.42 235.15c-66.24 0-120 53.76-120 120 0 134.76 135.93 170.09 228.56 303.31 87.574-132.4 228.56-172.86 228.56-303.31 0-66.24-53.76-120-120-120-48.048 0-89.402 28.37-108.56 69.188-19.161-40.817-60.514-69.188-108.56-69.188z
-    var c = Two.Utils.read.path(document.querySelector('path'))
-    console.log(c)
-    c.scale = 0.2
-    c.translation.set(window.innerWidth / 2, heartHeight)
-    c.fill = '#f31'
-    c.flag = 1
-    two.scene.add(c)
+  </div>
+  <script>
+    var heartHeight = 150;
+    var beatSpeed = 0.003;
+    var two = new Two({
+      fullscreen: true,
+      type: Two.Types.canvas,
+      autostart: true
+    }).appendTo(document.body);
 
+    function createBigHeart(){
+      var c = Two.Utils.read.path(document.querySelector('path'));
+
+      c.scale = 0.2;
+      c.translation.set(window.innerWidth / 2, heartHeight);
+      c.fill = '#f31';
+      c.flag = 1;
+      two.scene.add(c);
+      return c;
+    }
+    var c = createBigHeart();
+
+    var birdAudio = document.getElementById('bird');
+    var fireAudio = document.getElementById('firework');
     var characters = [];
     var styles = {
-      family: 'proxima-nova, sans-serif',
+      family: 'webfont',
       size: 50,
       leading: 50,
       weight: 900
     };
     var gravity = new Two.Vector(0, 0.66);
     var i = 0;
-    for(let s of ['今天','是','七夕节','，','咱俩','在一起','吧']){
+    for (let s of ['今天', '是', '七夕节', '，', '咱俩', '在一起', '吧']) {
 
-      setTimeout(function(){add(s)}, 800 * i++)
+      setTimeout(function () { add(s) }, 800 * i++)
     }
     function getRandomColor() {
-          var color = {
-            r: Math.floor(Math.random() * 255),
-            g: Math.floor(Math.random() * 255),
-            b: Math.floor(Math.random() * 255),
-            toString: function(a) {
-              if (a) {
-                return 'rgba('
-                  + color.r + ','
-                  + color.g + ','
-                  + color.b + ','
-                  + a + ')';
-              }
-              return 'rgb('
-                + color.r + ','
-                + color.g + ','
-                + color.b + ')';
-            }
-          };
-          return color;
+      var color = {
+        r: Math.floor(Math.random() * 255),
+        g: Math.floor(Math.random() * 255),
+        b: Math.floor(Math.random() * 255),
+        toString: function (a) {
+          if (a) {
+            return 'rgba('
+              + color.r + ','
+              + color.g + ','
+              + color.b + ','
+              + a + ')';
+          }
+          return 'rgb('
+            + color.r + ','
+            + color.g + ','
+            + color.b + ')';
         }
-    two.bind('update', function() {
+      };
+      return color;
+    }
+    function callback () {
 
       c.flag = (c.scale > 0.2 || c.scale < 0.1) ? -c.flag : c.flag
       c.scale += beatSpeed * c.flag
       for (var i = 0; i < characters.length; i++) {
-
         var text = characters[i];
         text.translation.addSelf(text.velocity);
         text.rotation += text.velocity.r;
 
         text.velocity.addSelf(gravity);
-        if (text.velocity.y > 0 && text.translation.y > two.height)  {
+        if (text.velocity.y > 0 && text.translation.y > two.height) {
           two.scene.remove(text);
           characters.splice(i, 1);
         }
-        if(characters.length === 0){
-          ask()
+        if (characters.length === 0) {
+          ask();
+          two.unbind('update', callback);
         }
       }
+    }
+    two.bind('update', callback);
 
-    });
-
-    function ask(){
+    function ask() {
       var modal = document.getElementById('modal');
-      modal.style.display = 'block'
-      document.getElementById('ok').onclick = function(){
-        modal.style.display = ''
-        console.log('ok')
-        var hearts = []
-        for(var i = 0; i < 100; i++){
-          let heart = createHeart()
-          hearts.push(heart)
-          two.scene.add(heart)
+      modal.style.display = 'block';
+      document.getElementById('ok').onclick = function () {
+        modal.style.display = '';
+        var hearts = [];
+        for (var i = 0; i < 100; i++) {
+          let heart = createHeart();
+          hearts.push(heart);
+          two.scene.add(heart);
         }
-        var text = two.makeText('', 187.5, 250, {size: 30, weight: 300})
-        for(let i = 0; i <= 7; i++){
-          setTimeout(function(){
+        var text = two.makeText('', 187.5, 250, { size: 30, weight: 300, family: 'siyuan' });
+        for (let i = 0; i <= 7; i++) {
+          setTimeout(function () {
             text.value = '余生请多指教!'.substr(0, i);
           }, 500 * i);
         }
-        console.log(text)
-        two.bind('update', function() {
+        // 心形礼花
+        two.bind('update', function () {
           for (var i = 0; i < hearts.length; i++) {
 
             var c = hearts[i];
             c.translation.addSelf(c.velocity);
             c.rotation += c.velocity.r;
 
-            c.velocity.addSelf( gravity);
-            if (c.velocity.y > 0 && c.translation.y > two.height + 1000)  {
-                // c.fill = getRandomColor() + ''
-                c.scale = 0.05 + rnd(-0.01, 0.01)
-                c.translation.set(window.innerWidth / 2, heartHeight)
-                c.velocity.x = 5 * (Math.random() - 0.5);
-                c.velocity.y = - (5 * Math.random() + 22);
-                c.velocity.r = 0.1 * Math.PI / 8;
+            c.velocity.addSelf(gravity);
+            if (c.velocity.y > 0 && c.translation.y > two.height + 1000) {
+              if(i === 0){
+                console.log(i);
+                fireAudio.play();
+              }
+              c.scale = 0.05 + rnd(-0.01, 0.01);
+              c.translation.set(window.innerWidth / 2, heartHeight);
+              c.velocity.x = 5 * (Math.random() - 0.5);
+              c.velocity.y = - (5 * Math.random() + 22);
+              c.velocity.r = 0.1 * Math.PI / 8;
             }
           }
         });
       }
-      document.getElementById('notok').onclick = function(){
+      document.getElementById('notok').onclick = function () {
         console.log('notok')
-        modal.style.display = ''
+        modal.style.display = '';
         document.getElementById('sad-man').classList.add('show');
-        var timer = setInterval(function(){
-          console.log(c.opacity)
-          if(c.opacity <= 0.03){
-            two.scene.remove(c)
-            return clearInterval(timer)
+        birdAudio.play().then(data => console.log(data));
+        var timer = setInterval(function () {
+          if (c.opacity <= 0.03) {
+            two.scene.remove(c);
+            return clearInterval(timer);
           }
           c.opacity -= 0.02;
-          beatSpeed = beatSpeed * 0.8; 
+          beatSpeed = beatSpeed * 0.8;
         }, 100)
 
       }
     }
-    function rnd(min, max){
+    function rnd(min, max) {
       return min + Math.random() * (max - min)
     }
-    function createHeart(){
+    function createHeart() {
       var c = Two.Utils.read.path(document.querySelector('path'))
       c.scale = 0.05
       c.translation.set(window.innerWidth / 2, heartHeight)
@@ -387,10 +423,10 @@
       text.velocity.x = 5 * (Math.random() - 0.5);
       text.velocity.y = - (5 * Math.random() + 22);
       text.velocity.r = 0.1 * Math.PI / 8;
-      console.log(text.velocity.y )
       characters.push(text);
 
-      }
+    }
   </script>
 </body>
+
 </html>
