@@ -186,7 +186,7 @@
         gifData = blob;
 
         msgEl.innerHTML = `
-        <a download href=${url}>下载</a>
+        <a download href=${url} style="color:#fff">下载</a>
         <span onclick="save()" style="margin-left:10px;font-size:12px;color:#e5e5e5">下载失败?点这里</span>`;
         // 这里是blob
         document.getElementById('output').src = url;
