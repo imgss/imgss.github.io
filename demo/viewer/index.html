@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    model-viewer{
+      width: 100%;
+      height: 300px;
+    }
+  </style>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"></script>
+<script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+
+</head>
+<body>
+  <!-- Use it like any other HTML element -->
+  <h2><a href="https://googlewebcomponents.github.io/model-viewer/">model-viewer文档</a></h2>
+<model-viewer src="./RobotExpressive.glb" alt="A 3D model of an astronaut" autoplay camera-controls background-color="#455A64"></model-viewer>
+<model-viewer src="./girl.gltf" alt="A 3D model of an astronaut" auto-rotate camera-controls background-color="#2e2e2e"></model-viewer>
+</body>
+</html>
