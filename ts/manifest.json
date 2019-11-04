@@ -1,0 +1,14 @@
+{
+  "name": "Typesctipt-book",
+  "short_name": "TS-book",
+  "start_url": "/ts/index.html",
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "#3eaf7c",
+  "description": "A simply readable Hacker News app.",
+  "icons": [{
+    "src": "./logo.png",
+    "sizes": "48x48",
+    "type": "image/png"
+  }]
+}
