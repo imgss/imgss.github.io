@@ -175,6 +175,8 @@ footer {
     display: flex;
     justify-content: space-around;
     line-height: 1;
+    position: fixed;
+    bottom: 10px;
 }
 
 footer>span {
